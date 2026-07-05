@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraFit - Register & Log In</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+
+    <div class="page-container">
+        
+        <!-- Logo / Header Section -->
+        <header class="logo-container">
+            <img src="logo1.png" alt="AuraFit Logo" class="logo-img">
+            <span class="logo-text">AURAFIT</span>
+        </header>
+
+        <!-- Hidden Radio Inputs that control the state -->
+        <input type="radio" id="toggle-register" name="form-toggle" checked class="radio-toggle">
+        <input type="radio" id="toggle-login" name="form-toggle" class="radio-toggle">
+
+        <!-- Main Form Container -->
+        <main class="form-card">
+            
+            <!-- Tabs Navigation using Labels linked to the Radios -->
+            <div class="tab-navigation">
+                <label for="toggle-register" class="tab-btn label-register">Register</label>
+                <label for="toggle-login" class="tab-btn label-login">Log in</label>
+            </div>
+
+            <!-- REGISTER FORM -->
+            <form class="form-content form-register">
+                <div class="form-row-inline">
+                    <div class="form-group">
+                        <input type="text" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Last Name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+
+            <!-- LOG IN FORM -->
+            <form class="form-content form-login">
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="submit-btn">Log in</button>
+            </form>
+
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="footer-text">
+            &copy; 2026 AuraFit. All rights reserved.
+        </footer>
+
+    </div>
+
+</body>
+</html>
