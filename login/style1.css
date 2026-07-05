@@ -12,7 +12,7 @@ body {
     align-items: center;
     min-height: 100vh;
     padding: 20px;
-    /* Full page background fluid grey shade */
+    /*background grey shade */
     background: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 50%, #94a3b8 100%);
     background-size: cover;
     background-attachment: fixed;
@@ -47,7 +47,7 @@ body {
     color: #1e293b;
 }
 
-/* Stable card container layout size configuration */
+/*layout siz*/
 .form-card {
     width: 100%;
     max-width: 520px;
@@ -90,14 +90,12 @@ body {
     flex-direction: column;
 }
 
-/* ========================================== */
-/* Functional CSS Tab Switching               */
-/* ========================================== */
+
 
 .form-login { display: none; }
 .form-register { display: flex; }
 
-/* Active Register Layout Toggles */
+/*Register Layout*/
 #toggle-register:checked ~ .form-card .label-register {
     background-color: transparent;
     color: #000;
@@ -108,7 +106,7 @@ body {
     color: #000;
 }
 
-/* Active Login Layout Toggles */
+/*Login Layout*/
 #toggle-login:checked ~ .form-card .form-register { display: none; }
 #toggle-login:checked ~ .form-card .form-login { display: flex; }
 
@@ -122,7 +120,7 @@ body {
     color: #000;
 }
 
-/* ========================================== */
+
 
 .form-content {
     padding: 35px 30px;
@@ -162,14 +160,14 @@ body {
     background-color: rgba(255, 255, 255, 0.85);
 }
 
-/* Restored Blue Buttons Styling for both Register & Log in */
+/*blue button*/
 .submit-btn {
     width: 100%;
     padding: 14px;
     font-size: 16px;
     font-weight: 600;
     color: #ffffff;
-    background-color: #4f5bd5; /* The original vibrant royal blue */
+    background-color: #4f5bd5;
     border: none;
     border-radius: 25px;
     cursor: pointer;
@@ -178,7 +176,7 @@ body {
 }
 
 .submit-btn:hover {
-    background-color: #3b45b5; /* Darker blue on hover */
+    background-color: #3b45b5;
 }
 
 .footer-text {
