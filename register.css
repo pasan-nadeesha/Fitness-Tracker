@@ -1,0 +1,80 @@
+body{
+    background-image: url('images/blur_bg.png');
+    display: flex;
+    justify-content: center;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+}
+
+.form_box{
+    background-color: #04cdd4;
+    width: 100%;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.tabs{
+    display: flex;
+}
+
+.tab{
+    flex: 1;
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    font-weight: bold;
+
+}
+
+.tab.register_tab{
+    background-color: #04cdd4;
+    border-radius: 30px;
+
+}
+
+.login_tab{
+    background-color: #ffffff;
+    border-radius: 0 30px 0 30px;
+}
+
+.register_form{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 20px;
+}
+
+.input_row{
+    padding: 10px;
+    gap: 20px;
+    display: flex;
+}
+
+.input_column{
+    gap:20px;
+}
+
+.input_row input{
+    flex: 1;
+}
+
+input{
+    padding: 16px 24px;
+    width: 100%;
+    border-radius: 18px;
+    background-color: transparent;
+    border: 1px solid #646464;
+}
+
+input::placeholder{
+    color: #646464;
+    font-size: 16px;
+}
