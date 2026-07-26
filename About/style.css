@@ -127,27 +127,79 @@ body{
     line-height: 2;
 }
 
-.university_details{
+.university_banner {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
-    margin-bottom: 65px;
-}
-
-.uni_logo img{
-    width: 60px;
-    height: auto;
-    margin-bottom: 20px;
-}
-
-.uni_name h3{
+    justify-content: space-between;
+    background-color: #ebebeb;
+    border: 1px solid #e3e3e3;
+    border-radius: 12px;
+    padding: 25px 100px 25px 140px;
+    box-shadow: 0 8px 24px rgba(110, 110, 110, 0.4);
     font-family: 'Poppins', sans-serif;
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: 600;
     color: #000000;
+    max-width: 1000px;
+    margin: 0px auto 100px auto;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.university_banner:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 30px rgba(110, 110, 110, 0.6);
+}
+
+.logo_wrapper .uni_logo {
+    width: 130px;
+    height: auto;
+    display: block;
+}
+
+.banner_text {
+    flex: 1;
+    margin-left: 35px;
+}
+
+.uni_title {
+    color: #000000;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin: 0 0 12px 0;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.faculty_info {
+    color: #5d5d5d;
+    font-size: 1.05rem;
+    font-weight: 400;
+    margin: 0 0 12px 0;
+}
+
+.project_title {
+    color: #888888;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Responsive view for mobile screens */
+@media (max-width: 768px) {
+    .university_banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .banner_text {
+        margin-left: 0;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .uni_title {
+        font-size: 1.2rem;
+    }
 }
 
 .team_member_title{ 
@@ -180,8 +232,8 @@ body{
 }
 
 .member_card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    transform: scale(1.03);
+    box-shadow: 0 12px 30px rgba(110, 110, 110, 0.6);
 }
 
 .profile_image_container {
@@ -214,7 +266,35 @@ body{
     margin: 0;
 }
 
+.social_links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 18px;
+}
 
+.social_icon {
+    font-size: 1.1rem;
+    color: #585858;
+    transition: color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+}
+
+.social_icon:hover {
+    transform: translateY(-3px);
+}
+
+.social_icon.email:hover {
+    color: #ea4335;
+}
+
+.social_icon.linkedin:hover {
+    color: #0A66C2;
+}
+
+.social_icon.github:hover {
+    color: #24292e;
+}
 
 .footer_text{
     text-align: center;
