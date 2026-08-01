@@ -8,10 +8,11 @@
 
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    overflow-x: hidden;
     /*background grey shade */
     background: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 50%, #94a3b8 100%);
     background-size: cover;
@@ -25,6 +26,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-grow: 1;
+    padding: 0 20px;
 }
 
 .logo-container {
@@ -177,11 +180,4 @@ body {
 
 .submit-btn:hover {
     background-color: #3b45b5;
-}
-
-.footer-text {
-    font-size: 0.8rem;
-    color: #1e293b;
-    font-weight: 600;
-    opacity: 0.8;
 }
