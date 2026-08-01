@@ -1,25 +1,29 @@
 const track = document.getElementById('sliderTrack');
 const container = document.querySelector('.slider-container');
 
+const originalCards = Array.from(track.children);
+originalCards.forEach(card => {
+    const clone = card.cloneNode(true);
+    track.appendChild(clone);
+});
+
 let isDown = false;
 let startX;
 let scrollLeft;
-let scrollSpeed = 0.5;
+let scrollSpeed = 0.6;
 let animationFrameId;
 
-
 function autoPlay() {
-  
-  container.scrollLeft += scrollSpeed;
-  
+  if (!isDown) {
+    container.scrollLeft += scrollSpeed;
 
-  if (container.scrollLeft >= (track.scrollWidth - container.clientWidth)) {
-    container.scrollLeft = 0;
+    if (container.scrollLeft >= track.scrollWidth / 2) {
+      container.scrollLeft = 0;
+    }
   }
   
   animationFrameId = requestAnimationFrame(autoPlay);
 }
-
 
 autoPlay();
 
