@@ -100,7 +100,7 @@ let ringsChart = new Chart(ctxDoughnut, {
     options: {
         responsive: true,
         maintainAspectRatio: false,
-        cutout: '60%', // Creates the empty center
+        cutout: '60%',
         plugins: {
             legend: { display: false },
             tooltip: { enabled: false }
