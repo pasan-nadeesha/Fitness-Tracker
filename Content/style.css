@@ -71,18 +71,6 @@ body{
     color: #1e293b;
 }
 
-.register_button{
-    background: linear-gradient(135deg, #e0e0e0, #ffffff);
-    border: 1px solid #ccc;
-    padding: 8px 22px;
-    border-radius: 20px;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-
-
 .content {
     margin: 130px 50px 30px 45px;
     display: flex;
