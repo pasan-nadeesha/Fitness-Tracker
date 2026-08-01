@@ -73,6 +73,59 @@ body{
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
+.menu_toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu_toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #000;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+    .menu_toggle {
+        display: flex;
+    }
+
+    .nav_links {
+        position: absolute;
+        top: 70px;
+        right: -100%;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s ease-in-out;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+    }
+
+    .nav_links.active {
+        right: 0;
+    }
+
+    .nav_links li {
+        padding: 15px 0;
+    }
+
+    .menu_toggle.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu_toggle.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu_toggle.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
 .main_section{
     display: flex;
     justify-content: space-between;
@@ -81,20 +134,10 @@ body{
     flex: 1;
     position: relative;
 }
+
 .fitness_image{
     width: 45%;
     height: auto;
-}
-
-
-
-.main_section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 105px 8% 40px 8%;
-  flex: 1;
-  position: relative;
 }
 
 .main_content {
@@ -209,7 +252,7 @@ body{
 }
 
 .feature-card h3 {
-    font-family: 'popins', sans-serif;
+    font-family: 'poppins', sans-serif;
     margin-top: 15px;
     font-size: 1.2rem;
     font-weight: 600;
@@ -225,4 +268,17 @@ body{
     padding: 30px 0px 30px 0px;
     color: #1e293b;
     opacity: 0.8;
+}
+
+@media screen and (max-width: 768px) {
+    .main_section {
+        flex-direction: column;
+        text-align: center;
+    }
+    .fitness_image {
+        width: 100%;
+    }
+    .feature-card {
+        width: 280px;
+    }
 }
