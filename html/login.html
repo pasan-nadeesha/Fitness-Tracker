@@ -4,63 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AuraFit - Register & Log In</title>
-    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
 
     <div class="page-container">
+        
+        <!-- Logo -->
         <header class="logo-container">
-            <img src="images/logo1.png" alt="AuraFit brand logo" class="logo-img">
+            <img src="../images/logo1.png" alt="AuraFit brand logo with stylized lettering for a fitness and wellness app" class="logo-img">
             <span class="logo-text">AURAFIT</span>
         </header>
 
+        <!-- Radio Inputs -->
         <input type="radio" id="toggle-register" name="form-toggle" checked class="radio-toggle">
         <input type="radio" id="toggle-login" name="form-toggle" class="radio-toggle">
 
+        <!-- Main Form -->
         <main class="form-card">
+            
+            <!-- Tabs Navigation using Labels linked to the Radios -->
             <div class="tab-navigation">
                 <label for="toggle-register" class="tab-btn label-register">Register</label>
                 <label for="toggle-login" class="tab-btn label-login">Log in</label>
             </div>
 
             <!-- REGISTER FORM -->
-            <form class="form-content form-register" action="auth/register.php" method="POST">
+            <form class="form-content form-register">
                 <div class="form-row-inline">
                     <div class="form-group">
-                        <input type="text" name="first_name" placeholder="First Name" required>
+                        <input type="text" placeholder="First Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="last_name" placeholder="Last Name" required>
+                        <input type="text" placeholder="Last Name" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="email" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="text" placeholder="Username" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="password" placeholder="Password" required>
                 </div>
                 <button type="submit" class="submit-btn">Register</button>
             </form>
 
             <!-- LOG IN FORM -->
-            <form class="form-content form-login" action="auth/login.php" method="POST">
+            <form class="form-content form-login">
                 <div class="form-group">
-                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="email" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="password" placeholder="Password" required>
                 </div>
                 <button type="submit" class="submit-btn">Log in</button>
             </form>
+
         </main>
 
-        <footer class="footer-text">
-            &copy; 2026 AuraFit. All rights reserved.
-        </footer>
     </div>
+    
+    <!-- script for toggle switch login -->
+    <script src="../js/login.js"></script>
 
 </body>
 </html>
