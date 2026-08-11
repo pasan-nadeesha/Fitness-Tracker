@@ -1,0 +1,510 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('../images/bg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 2%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 0px;
+}
+
+.nav_links {
+    display: flex;
+    list-style: none;
+}
+
+.nav_links li {
+    padding: 0 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav_links a {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.menu_toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu_toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #000;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.logo_img {
+    width: 50px;
+    height: 50px;
+}
+
+.logo_text {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #1e293b;
+}
+
+/* Vision & Mission */
+.vision_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 4px solid #182fc3;
+    border-radius: 25px;
+    padding: 30px 50px;
+    margin: 130px 170px 0px 170px;
+}
+
+.vision_title h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    color: #182fc3;
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+.vision_content p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 2;
+}
+
+.mission_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 4px solid #1124a2;
+    border-radius: 25px;
+    padding: 30px 50px;
+    margin: 90px 170px 100px 170px;
+}
+
+.mission_title h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    color: #1124a2;
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+.mission_content p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 2;
+}
+
+/* University Banner */
+.university_banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ebebeb;
+    border: 1px solid #e3e3e3;
+    border-radius: 12px;
+    padding: 25px 100px 25px 140px;
+    box-shadow: 0 8px 24px rgba(110, 110, 110, 0.4);
+    font-family: 'Poppins', sans-serif;
+    color: #000000;
+    max-width: 1000px;
+    margin: 0px auto 100px auto;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+    will-change: transform; 
+    cursor: pointer;
+}
+
+.logo_wrapper .uni_logo {
+    width: 130px;
+    height: auto;
+    display: block;
+}
+
+.banner_text {
+    flex: 1;
+    margin-left: 35px;
+}
+
+.uni_title {
+    color: #000000;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin: 0 0 12px 0;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.faculty_info {
+    color: #5d5d5d;
+    font-size: 1.05rem;
+    font-weight: 400;
+    margin: 0 0 12px 0;
+}
+
+.project_title {
+    color: #888888;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Team Members */
+.team_member_title { 
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    font-size: 2rem;
+    color: #1124a2;
+    margin-bottom: 45px;
+}
+
+.cards_wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.member_card {
+    background-color: #ebebeb;
+    border: 2px solid #e6e6e6;
+    border-radius: 15px;
+    width: 300px;
+    padding: 28px;
+    margin-bottom: 70px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+    will-change: transform;
+    cursor: pointer;
+}
+
+.profile_image_container {
+    margin-bottom: 20px;
+}
+
+.profile_image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #eee;
+}
+
+.member_name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
+    color: #222;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+}
+
+.member_description {
+    list-style: none;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #585858;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.social_links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 18px;
+}
+
+.social_icon {
+    font-size: 1.1rem;
+    color: #585858;
+    transition: color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+}
+
+.social_icon:hover {
+    transform: translateY(-3px);
+}
+
+.social_icon.email:hover { color: #ea4335; }
+.social_icon.linkedin:hover { color: #0A66C2; }
+.social_icon.github:hover { color: #24292e; }
+
+/* Scroll Animation */
+.vision_container, .mission_container, .university_banner, .member_card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.vision_container.revealed, .mission_container.revealed, .university_banner.revealed, .member_card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hover Scale Effects (Revealed වුණාට පස්සෙත් වැඩ කිරීමට) */
+.university_banner:hover, .university_banner.revealed:hover {
+    transform: translateY(0) scale(1.03) !important;
+    box-shadow: 0 12px 30px rgba(110, 110, 110, 0.6);
+}
+
+.member_card:hover, .member_card.revealed:hover {
+    transform: translateY(0) scale(1.05) !important;
+    box-shadow: 0 12px 30px rgba(110, 110, 110, 0.6);
+}
+
+/* Responsive Media */
+@media screen and (max-width: 868px) {
+    .vision_container, .mission_container {
+        margin: 100px 5% 0px 5%;
+        padding: 25px 20px;
+    }
+
+    .mission_container {
+        margin-top: 40px;
+        margin-bottom: 50px;
+    }
+
+    .university_banner {
+        width: 90%;
+        padding: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .menu_toggle {
+        display: flex;
+    }
+
+    .nav_links {
+        position: absolute;
+        top: 70px;
+        right: -100%;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s ease-in-out;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+    }
+
+    .nav_links.active {
+        right: 0;
+    }
+
+    .nav_links li {
+        padding: 15px 0;
+    }
+
+    .menu_toggle.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu_toggle.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu_toggle.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .university_banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .banner_text {
+        margin-left: 0;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .uni_title {
+        font-size: 1.2rem;
+    }
+
+    .vision_title h2, .mission_title h2, .team_member_title {
+        font-size: 1.5rem;
+    }
+
+    .vision_content p, .mission_content p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .cards_wrapper {
+        gap: 20px;
+    }
+
+    .member_card {
+        width: 90%;
+        max-width: 320px;
+    }
+}
+
+.footer {
+    background-color: #2c2f33;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    padding: 50px 8%;
+    width: 100%;
+}
+
+.footer_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.footer_left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+}
+
+.info_item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon_box {
+    background-color: #3a3d42;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    color: #ffffff;
+    flex-shrink: 0;
+}
+
+.info_item p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #ffffff;
+    line-height: 1.4;
+}
+
+.info_item p span {
+    display: block;
+    font-weight: 400;
+}
+
+.info_item p strong {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.info_item p a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.info_item p a:hover {
+    text-decoration: underline;
+}
+
+.footer_right {
+    flex: 1;
+    max-width: 450px;
+}
+
+.footer_right h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.about_text {
+    color: #b9bbbe;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.social_icons {
+    display: flex;
+    gap: 12px;
+}
+
+.social_icons a {
+    background-color: #3a3d42;
+    color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social_icons a:hover {
+    background-color: #5383d3;
+    transform: translateY(-3px);
+}
+
+
+@media screen and (max-width: 768px) {
+    .footer_container {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .footer_right {
+        max-width: 100%;
+    }
+}
