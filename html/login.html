@@ -31,34 +31,34 @@
             </div>
 
             <!-- REGISTER FORM -->
-            <form class="form-content form-register">
+            <form class="form-content form-register" action="../auth/register.php" method="POST">
                 <div class="form-row-inline">
                     <div class="form-group">
-                        <input type="text" placeholder="First Name" required>
+                        <input type="text" name="first_name" placeholder="First Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="Last Name" required>
+                        <input type="text" name="last_name" placeholder="Last Name" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Email" required>
+                    <input type="email" name="email" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" placeholder="Username" required>
+                    <input type="text" name="username" placeholder="Username" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" placeholder="Password" required>
+                    <input type="password" name="password" placeholder="Password" required>
                 </div>
                 <button type="submit" class="submit-btn">Register</button>
             </form>
 
             <!-- LOG IN FORM -->
-            <form class="form-content form-login">
+            <form class="form-content form-login" action="../auth/login.php" method="POST">
                 <div class="form-group">
-                    <input type="email" placeholder="Email" required>
+                    <input type="email" name="email" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" placeholder="Password" required>
+                    <input type="password" name="password" placeholder="Password" required>
                 </div>
                 <button type="submit" class="submit-btn">Log in</button>
             </form>
