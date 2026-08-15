@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - AURAFIT</title>
     
-    <!-- Paths updated for Root execution -->
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -30,128 +29,128 @@
     
     <!-- LEFT SIDEBAR -->
     <aside class="sidebar" id="sidebar">
-        
-        <div class="sidebar-content">
-            <div class="user-profile">
-                <!-- 🔥 User Initial & Full Name Dynamically Displayed 🔥 -->
-                <div class="avatar">
-                    <span><?= htmlspecialchars($user_initial ?? 'U') ?></span>
+        <form action="dashboard.php" method="POST" id="fitness-form">
+            <div class="sidebar-content">
+                <div class="user-profile">
+                    <div class="avatar">
+                        <span><?php echo htmlspecialchars($user_initial ?? 'U'); ?></span>
+                    </div>
+                    <div>
+                        <h4><?php echo htmlspecialchars($display_name ?? 'User'); ?></h4>
+                    </div>
                 </div>
-                <div>
-                    <h4><?= htmlspecialchars($display_name ?? 'User') ?></h4>
-                </div>
-            </div>
 
-            <div class="sidebar-section-title">
-                <i class="fa-solid fa-scale-balanced"></i> Body Details
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Age</label>
-                    <input type="text" class="form-control" value="28">
+                <div class="sidebar-section-title">
+                    <i class="fa-solid fa-scale-balanced"></i> Body Details
                 </div>
-                <div class="form-group">
-                    <label>Gender</label>
-                    <select class="form-control">
-                        <option>Male</option>
-                        <option>Female</option>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" name="age" id="body-age" class="form-control" value="<?php echo htmlspecialchars($latest_log['age'] ?? 28); ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <select name="gender" class="form-control">
+                            <option value="Male" <?php echo (isset($latest_log['gender']) && $latest_log['gender'] == 'Male') ? 'selected' : ''; ?>>Male</option>
+                            <option value="Female" <?php echo (isset($latest_log['gender']) && $latest_log['gender'] == 'Female') ? 'selected' : ''; ?>>Female</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Weight (kg)</label>
+                        <input type="number" step="0.1" name="weight" class="form-control" value="<?php echo htmlspecialchars($latest_log['weight'] ?? 78); ?>" id="body-weight" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Height (cm)</label>
+                        <input type="number" step="0.1" name="height" class="form-control" value="<?php echo htmlspecialchars($latest_log['height'] ?? 178); ?>" id="body-height" required>
+                    </div>
+                </div>
+
+                <div class="form-group activity-group">
+                    <label>Select Your Activity Level</label>
+                    <select name="activity_level" class="form-control">
+                        <option value="sedentary">Sedentary (Little or no exercise)</option>
+                        <option value="lightly_active">Lightly Active (Exercise 1–3 days/week)</option>
+                        <option value="moderately_active" selected>Moderately Active (Exercise 3–5 days/week)</option>
+                        <option value="very_active">Very Active (Exercise 6–7 days/week)</option>
+                        <option value="extra_active">Extra Active (Athlete or physical job)</option>
                     </select>
                 </div>
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Weight (kg)</label>
-                    <input type="text" class="form-control" value="78" id="body-weight">
+
+                <div class="hr-line"></div>
+                
+                <div class="sidebar-section-title">
+                    <i class="fa-solid fa-droplet"></i> Hydration Today
                 </div>
-                <div class="form-group">
-                    <label>Height (cm)</label>
-                    <input type="text" class="form-control" value="178" id="body-height">
-                </div>
-            </div>
 
-            <div class="form-group activity-group">
-                <label>Select Your Activity Level</label>
-                <select class="form-control">
-                    <option value="sedentary">Sedentary (Little or no exercise)</option>
-                    <option value="lightly_active">Lightly Active (Exercise 1–3 days/week)</option>
-                    <option value="moderately_active" selected>Moderately Active (Exercise 3–5 days/week)</option>
-                    <option value="very_active">Very Active (Exercise 6–7 days/week)</option>
-                    <option value="extra_active">Extra Active (Athlete or physical job)</option>
-                </select>
-            </div>
-
-            <div class="hr-line"></div>
-            <div class="hr-line"></div>
-            
-            <div class="sidebar-section-title">
-                <i class="fa-solid fa-droplet"></i> Hydration Today
-            </div>
-
-            <div class="workout-input-row">
-                <div class="w-icon-small bg-blue"><i class="fa-solid fa-glass-water"></i></div>
-                <div class="w-input-group">
-                    <label>Water Intake</label>
-                    <div class="input-with-unit">
-                        <input type="text" class="form-control" value="1.8" id="water-input">
-                        <span>L</span>
+                <div class="workout-input-row">
+                    <div class="w-icon-small bg-blue"><i class="fa-solid fa-glass-water"></i></div>
+                    <div class="w-input-group">
+                        <label>Water Intake</label>
+                        <div class="input-with-unit">
+                            <input type="number" step="0.1" name="water_intake" class="form-control" value="<?php echo htmlspecialchars($latest_log['water_intake'] ?? 1.8); ?>" id="water-input">
+                            <span>L</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="sidebar-section-title">
-                <i class="fa-regular fa-clock"></i> Today's Workout Time
-            </div>
-            
-            <div class="workout-input-row">
-                <div class="w-icon-small bg-purple"><i class="fa-solid fa-shoe-prints"></i></div>
-                <div class="w-input-group">
-                    <label>Running</label>
-                    <div class="input-with-unit">
-                        <input type="text" class="form-control" value="0" id="run-input">
-                        <span>min</span>
+                <div class="sidebar-section-title">
+                    <i class="fa-regular fa-clock"></i> Today's Workout Time
+                </div>
+                
+                <div class="workout-input-row">
+                    <div class="w-icon-small bg-purple"><i class="fa-solid fa-shoe-prints"></i></div>
+                    <div class="w-input-group">
+                        <label>Running</label>
+                        <div class="input-with-unit">
+                            <input type="number" name="running_time" class="form-control" value="0" id="run-input">
+                            <span>min</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="workout-input-row">
-                <div class="w-icon-small bg-green"><i class="fa-solid fa-person-biking"></i></div>
-                <div class="w-input-group">
-                    <label>Cycling</label>
-                    <div class="input-with-unit">
-                        <input type="text" class="form-control" value="0" id="cycle-input">
-                        <span>min</span>
+                <div class="workout-input-row">
+                    <div class="w-icon-small bg-green"><i class="fa-solid fa-person-biking"></i></div>
+                    <div class="w-input-group">
+                        <label>Cycling</label>
+                        <div class="input-with-unit">
+                            <input type="number" name="cycling_time" class="form-control" value="0" id="cycle-input">
+                            <span>min</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="workout-input-row">
-                <div class="w-icon-small bg-orange"><i class="fa-solid fa-dumbbell"></i></div>
-                <div class="w-input-group">
-                    <label>Weight Training</label>
-                    <div class="input-with-unit">
-                        <input type="text" class="form-control" value="0" id="weight-input">
-                        <span>min</span>
+                <div class="workout-input-row">
+                    <div class="w-icon-small bg-orange"><i class="fa-solid fa-dumbbell"></i></div>
+                    <div class="w-input-group">
+                        <label>Weight Training</label>
+                        <div class="input-with-unit">
+                            <input type="number" name="weight_training" class="form-control" value="0" id="weight-input">
+                            <span>min</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="workout-input-row">
-                <div class="w-icon-small bg-blue"><i class="fa-solid fa-water"></i></div>
-                <div class="w-input-group">
-                    <label>Swimming</label>
-                    <div class="input-with-unit">
-                        <input type="text" class="form-control" value="0" id="swim-input">
-                        <span>min</span>
+                <div class="workout-input-row">
+                    <div class="w-icon-small bg-blue"><i class="fa-solid fa-water"></i></div>
+                    <div class="w-input-group">
+                        <label>Swimming</label>
+                        <div class="input-with-unit">
+                            <input type="number" name="swimming_time" class="form-control" value="0" id="swim-input">
+                            <span>min</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <button class="btn-calculate" id="calc-btn">
-                <i class="fa-solid fa-calculator"></i> Calculate
-            </button>
-        </div>
+                <input type="hidden" name="save_fitness" value="1">
+                <button type="submit" class="btn-calculate" id="calc-btn">
+                    <i class="fa-solid fa-calculator"></i> Calculate & Save
+                </button>
+            </div>
+        </form>
     </aside>
 
     <!-- RIGHT CONTENT -->
@@ -166,25 +165,30 @@
             <div class="stat-card stat-steps">
                 <i class="fa-solid fa-stopwatch"></i>
                 <span class="stat-title">Workout Time</span>
-                <span class="stat-value" id="workout-display">1h 45m</span>
+                <span class="stat-value" id="workout-display">
+                    <?php 
+                        $t_min = $latest_log['total_workout_time'] ?? 0;
+                        echo floor($t_min / 60) . 'h ' . ($t_min % 60) . 'm';
+                    ?>
+                </span>
                 <span class="stat-sub">+15 min since yesterday</span>
             </div>
             <div class="stat-card stat-workouts">
                 <i class="fa-solid fa-weight-scale"></i>
                 <span class="stat-title">BMI</span>
-                <span class="stat-value" id="bmi-display">24.6</span>
-                <span class="stat-sub" id="bmi-status">Normal weight</span>
+                <span class="stat-value" id="bmi-display"><?php echo htmlspecialchars($latest_log['bmi'] ?? '24.6'); ?></span>
+                <span class="stat-sub" id="bmi-status"><?php echo htmlspecialchars($latest_log['bmi_status'] ?? 'Normal weight'); ?></span>
             </div>
             <div class="stat-card stat-calories">
                 <i class="fa-solid fa-fire"></i>
                 <span class="stat-title">Calories</span>
-                <span class="stat-value" id="calories-display">2,847</span>
+                <span class="stat-value" id="calories-display"><?php echo number_format($latest_log['total_calories'] ?? 2458); ?></span>
                 <span class="stat-sub">+312 since yesterday</span>
             </div>
             <div class="stat-card stat-hydration">
                 <i class="fa-solid fa-droplet"></i>
                 <span class="stat-title">Hydration</span>
-                <span class="stat-value" id="hydration-display">1.8L</span>
+                <span class="stat-value" id="hydration-display"><?php echo htmlspecialchars($latest_log['water_intake'] ?? '1.8'); ?>L</span>
                 <span class="stat-sub">Goal: 2.5L today</span>
             </div>
         </section>
@@ -206,42 +210,47 @@
         <!-- Rings & Recent Workouts -->
         <section class="bottom-grid">
             
-            <!-- Daily Rings -->
-            <div class="card-panel">
+            <!-- Daily Rings (Cleaned from Inline CSS Errors) -->
+            <div class="card-panel" id="rings-data-holder" 
+                 data-water="<?php echo (int)($pct_water ?? 0); ?>" 
+                 data-exercise="<?php echo (int)($pct_exercise ?? 0); ?>" 
+                 data-move="<?php echo (int)($pct_move ?? 0); ?>" 
+                 data-avg="<?php echo (int)($avg_ring_pct ?? 0); ?>"
+                 data-chart='<?php echo json_encode($chart_history ?? ["labels" => [], "data" => []]); ?>'>
                 <div class="section-header">
                     <h3 class="rings-title">Daily Rings</h3>
                 </div>
                 <div class="rings-container">
                     <canvas id="ringsChart"></canvas>
-                    <div class="rings-center-text" id="ring-center">0%</div>
+                    <div class="rings-center-text" id="ring-center"><?php echo ($avg_ring_pct ?? 0); ?>%</div>
                 </div>
                 
                 <div class="progress-bar-group">
                     <div class="progress-label">
-                        <span>Move</span> <span class="pct txt-purple" id="move-pct-text">0%</span>
+                        <span>Move</span> <span class="pct txt-purple" id="move-pct-text"><?php echo ($pct_move ?? 0); ?>%</span>
                     </div>
                     <div class="progress-track"><div class="progress-fill bg-purple-fill" id="move-bar"></div></div>
-                    <div class="progress-subtext" id="move-subtext">0 / 2,500 kcal</div>
+                    <div class="progress-subtext" id="move-subtext"><?php echo number_format($cal ?? 2000); ?> / 2,500 kcal</div>
                 </div>
 
                 <div class="progress-bar-group">
                     <div class="progress-label">
-                        <span>Exercise</span> <span class="pct txt-green" id="exercise-pct-text">0%</span>
+                        <span>Exercise</span> <span class="pct txt-green" id="exercise-pct-text"><?php echo ($pct_exercise ?? 0); ?>%</span>
                     </div>
                     <div class="progress-track"><div class="progress-fill bg-green-fill" id="exercise-bar"></div></div>
-                    <div class="progress-subtext" id="exercise-subtext">0 / 60 min</div>
+                    <div class="progress-subtext" id="exercise-subtext"><?php echo ($mins ?? 0); ?> / 60 min</div>
                 </div>
 
                 <div class="progress-bar-group">
                     <div class="progress-label">
-                        <span>Hydration</span> <span class="pct txt-blue" id="water-pct-text">0%</span>
+                        <span>Hydration</span> <span class="pct txt-blue" id="water-pct-text"><?php echo ($pct_water ?? 0); ?>%</span>
                     </div>
                     <div class="progress-track"><div class="progress-fill bg-blue-fill" id="water-bar"></div></div>
-                    <div class="progress-subtext" id="water-subtext">0 / 2.5 L</div>
+                    <div class="progress-subtext" id="water-subtext"><?php echo ($water ?? 0.0); ?> / 2.5 L</div>
                 </div>
             </div>
 
-            <!-- Recent Workouts -->
+            <!-- Dynamic Recent Workouts History -->
             <div class="card-panel">
                 <div class="section-header">
                     <h3 class="section-subtitle">Recent Workouts</h3>
@@ -249,69 +258,35 @@
                 </div>
                 
                 <div class="workout-list">
-                    <div class="workout-item">
-                        <div class="wo-icon bg-purple"><i class="fa-solid fa-shoe-prints"></i></div>
-                        <div class="wo-info">
-                            <div class="wo-title-row">
-                                <span class="wo-title">Running</span>
-                                <span class="wo-tag tag-high">High</span>
-                            </div>
-                            <div class="wo-time">Today, 6:15 AM</div>
-                        </div>
-                        <div class="wo-stats">
-                            <div class="wo-stat-box"><p>42 min</p><p>Duration</p></div>
-                            <div class="wo-stat-box"><p>487</p><p>kcal</p></div>
-                        </div>
-                        <i class="fa-solid fa-chevron-right chevron-icon"></i>
-                    </div>
+                    <?php if (!empty($recent_workouts)): ?>
+                        <?php foreach ($recent_workouts as $w): 
+                            $icon = 'fa-dumbbell';
+                            $color_class = 'bg-orange';
+                            $tag_class = ($w['intensity'] == 'High') ? 'tag-high' : 'tag-mod';
 
-                    <div class="workout-item">
-                        <div class="wo-icon bg-green"><i class="fa-solid fa-person-biking"></i></div>
-                        <div class="wo-info">
-                            <div class="wo-title-row">
-                                <span class="wo-title">Cycling</span>
-                                <span class="wo-tag tag-mod">Moderate</span>
+                            if ($w['workout_type'] == 'Running') { $icon = 'fa-shoe-prints'; $color_class = 'bg-purple'; }
+                            elseif ($w['workout_type'] == 'Cycling') { $icon = 'fa-person-biking'; $color_class = 'bg-green'; }
+                            elseif ($w['workout_type'] == 'Swimming') { $icon = 'fa-water'; $color_class = 'bg-blue'; }
+                        ?>
+                            <div class="workout-item">
+                                <div class="wo-icon <?php echo $color_class; ?>"><i class="fa-solid <?php echo $icon; ?>"></i></div>
+                                <div class="wo-info">
+                                    <div class="wo-title-row">
+                                        <span class="wo-title"><?php echo htmlspecialchars($w['workout_type']); ?></span>
+                                        <span class="wo-tag <?php echo $tag_class; ?>"><?php echo htmlspecialchars($w['intensity']); ?></span>
+                                    </div>
+                                    <div class="wo-time"><?php echo date('M d, g:i A', strtotime($w['workout_datetime'])); ?></div>
+                                </div>
+                                <div class="wo-stats">
+                                    <div class="wo-stat-box"><p><?php echo $w['duration_min']; ?> min</p><p>Duration</p></div>
+                                    <div class="wo-stat-box"><p><?php echo $w['calories_burned']; ?></p><p>kcal</p></div>
+                                </div>
+                                <i class="fa-solid fa-chevron-right chevron-icon"></i>
                             </div>
-                            <div class="wo-time">Yesterday, 5:30 PM</div>
-                        </div>
-                        <div class="wo-stats">
-                            <div class="wo-stat-box"><p>61 min</p><p>Duration</p></div>
-                            <div class="wo-stat-box"><p>634</p><p>kcal</p></div>
-                        </div>
-                        <i class="fa-solid fa-chevron-right chevron-icon"></i>
-                    </div>
-
-                    <div class="workout-item">
-                        <div class="wo-icon bg-orange"><i class="fa-solid fa-dumbbell"></i></div>
-                        <div class="wo-info">
-                            <div class="wo-title-row">
-                                <span class="wo-title">Weight Training</span>
-                                <span class="wo-tag tag-high">High</span>
-                            </div>
-                            <div class="wo-time">Jul 29, 7:00 AM</div>
-                        </div>
-                        <div class="wo-stats">
-                            <div class="wo-stat-box"><p>55 min</p><p>Duration</p></div>
-                            <div class="wo-stat-box"><p>312</p><p>kcal</p></div>
-                        </div>
-                        <i class="fa-solid fa-chevron-right chevron-icon"></i>
-                    </div>
-
-                    <div class="workout-item">
-                        <div class="wo-icon bg-blue"><i class="fa-solid fa-water"></i></div>
-                        <div class="wo-info">
-                            <div class="wo-title-row">
-                                <span class="wo-title">Swimming</span>
-                                <span class="wo-tag tag-mod">Moderate</span>
-                            </div>
-                            <div class="wo-time">Jul 28, 8:00 AM</div>
-                        </div>
-                        <div class="wo-stats">
-                            <div class="wo-stat-box"><p>35 min</p><p>Duration</p></div>
-                            <div class="wo-stat-box"><p>276</p><p>kcal</p></div>
-                        </div>
-                        <i class="fa-solid fa-chevron-right chevron-icon"></i>
-                    </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p style="padding: 25px; text-align: center; color: #9ca3af; font-size: 0.9rem;">No recent workouts recorded.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </section>

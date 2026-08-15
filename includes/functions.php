@@ -10,7 +10,10 @@ function require_login() {
     }
 }
 
-//Get Login user Full name
+function sanitize_input($data) {
+    return htmlspecialchars(stripslashes(trim($data)));
+}
+
 function get_logged_in_name($conn, $user_id) {
     $stmt = $conn->prepare("SELECT first_name, last_name, username FROM users WHERE id = ? LIMIT 1");
     $stmt->bind_param("i", $user_id);
@@ -22,5 +25,50 @@ function get_logged_in_name($conn, $user_id) {
         return !empty($full_name) ? $full_name : ($user['username'] ?? 'User');
     }
     return 'User';
+}
+
+function calculate_bmi($weight, $height_cm) {
+    if ($weight <= 0 || $height_cm <= 0) return ['bmi' => 0.0, 'status' => 'N/A'];
+    $height_m = $height_cm / 100;
+    $bmi = round($weight / ($height_m * $height_m), 1);
+    
+    if ($bmi < 18.5) $status = "Underweight";
+    elseif ($bmi >= 18.5 && $bmi < 25) $status = "Normal weight";
+    elseif ($bmi >= 25 && $bmi < 30) $status = "Overweight";
+    else $status = "Obese";
+
+    return ['bmi' => $bmi, 'status' => $status];
+}
+
+// User ගේ අලුත්ම Daily Summary Log එක
+function get_latest_fitness_log($conn, $user_id) {
+    $stmt = $conn->prepare("SELECT * FROM daily_fitness_logs WHERE user_id = ? ORDER BY id DESC LIMIT 1");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_assoc();
+}
+
+// User ගේ Recent Workouts (List View සඳහා)
+function get_recent_workouts($conn, $user_id, $limit = 4) {
+    $stmt = $conn->prepare("SELECT * FROM workout_history WHERE user_id = ? ORDER BY workout_datetime DESC LIMIT ?");
+    $stmt->bind_param("ii", $user_id, $limit);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+}
+
+// Calories Chart එක සඳහා Data (පසුගිය Logs 7)
+function get_calories_chart_history($conn, $user_id) {
+    $stmt = $conn->prepare("SELECT log_date, total_calories FROM daily_fitness_logs WHERE user_id = ? ORDER BY log_date ASC LIMIT 7");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    $labels = [];
+    $data = [];
+    while ($row = $result->fetch_assoc()) {
+        $labels[] = date('M d', strtotime($row['log_date']));
+        $data[] = (int)$row['total_calories'];
+    }
+    return ['labels' => $labels, 'data' => $data];
 }
 ?>
