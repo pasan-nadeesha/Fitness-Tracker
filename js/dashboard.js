@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // HTML Data Holder එකෙන් Backend Data කියවා ගැනීම
     const dataHolder = document.getElementById('rings-data-holder');
     let chartHistory = { labels: [], data: [] };
     let initWater = 0, initEx = 0, initMove = 0, initAvg = 0;
@@ -16,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
         initAvg = parseInt(dataHolder.getAttribute('data-avg')) || 0;
     }
 
-    // 1. Line Chart Setup (Database History සම්බන්ධ කර ඇත)
+    // 1. Line Chart Setup
     const ctxLineEl = document.getElementById('caloriesChart');
     if (ctxLineEl) {
         const ctxLine = ctxLineEl.getContext('2d');
@@ -140,7 +139,6 @@ document.addEventListener('DOMContentLoaded', function () {
         'body-height'
     ];
 
-    // Live changes සඳහා event listeners attach කිරීම
     inputIds.forEach(id => {
         const el = document.getElementById(id);
         if (el) {

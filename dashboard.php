@@ -5,7 +5,6 @@ require_once 'includes/functions.php';
 require_login();
 $user_id = $_SESSION['user_id'];
 
-// 1. Form Submit වූ විට Database එකට Save කිරීම
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_fitness'])) {
     $age = (int)$_POST['age'];
     $gender = sanitize_input($_POST['gender']);
@@ -34,13 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_fitness'])) {
     $today = date('Y-m-d');
     $now = date('Y-m-d H:i:s');
 
-    // Daily Summary Save කිරීම
+    // Save Daily Summary
     $stmt = $conn->prepare("INSERT INTO daily_fitness_logs (user_id, age, gender, weight, height, activity_level, water_intake, total_workout_time, total_calories, bmi, bmi_status, log_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("iisddsdiidss", $user_id, $age, $gender, $weight, $height, $activity_level, $water_intake, $total_workout_time, $total_calories, $bmi, $bmi_status, $today);
     $stmt->execute();
     $stmt->close();
 
-    // Workouts History Save කිරීම
+    // Save Workouts History
     $workout_entries = [
         ['Running', $running, $run_cals, 'High'],
         ['Cycling', $cycling, $cycle_cals, 'Moderate'],
@@ -61,7 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_fitness'])) {
     exit();
 }
 
-// 2. Display සඳහා Data Fetch කිරීම
 $display_name = get_logged_in_name($conn, $user_id);
 $user_initial = !empty($display_name) ? strtoupper(substr($display_name, 0, 1)) : 'U';
 
@@ -69,7 +67,7 @@ $latest_log = get_latest_fitness_log($conn, $user_id);
 $recent_workouts = get_recent_workouts($conn, $user_id, 4);
 $chart_history = get_calories_chart_history($conn, $user_id);
 
-// Daily Rings සඳහා Percentages ගණනය කිරීම
+//Percentages calculation to Daily Rings
 $cal = $latest_log['total_calories'] ?? 2000;
 $mins = $latest_log['total_workout_time'] ?? 0;
 $water = $latest_log['water_intake'] ?? 0.0;
@@ -79,6 +77,5 @@ $pct_exercise = min(round(($mins / 60) * 100), 100);
 $pct_water = min(round(($water / 2.5) * 100), 100);
 $avg_ring_pct = round(($pct_move + $pct_exercise + $pct_water) / 3);
 
-// View file එක load කිරීම
 include 'html/dashboard.html';
 ?>

@@ -40,7 +40,7 @@ function calculate_bmi($weight, $height_cm) {
     return ['bmi' => $bmi, 'status' => $status];
 }
 
-// User ගේ අලුත්ම Daily Summary Log එක
+// User Daily Summary Log
 function get_latest_fitness_log($conn, $user_id) {
     $stmt = $conn->prepare("SELECT * FROM daily_fitness_logs WHERE user_id = ? ORDER BY id DESC LIMIT 1");
     $stmt->bind_param("i", $user_id);
@@ -48,7 +48,7 @@ function get_latest_fitness_log($conn, $user_id) {
     return $stmt->get_result()->fetch_assoc();
 }
 
-// User ගේ Recent Workouts (List View සඳහා)
+// User Recent Workouts
 function get_recent_workouts($conn, $user_id, $limit = 4) {
     $stmt = $conn->prepare("SELECT * FROM workout_history WHERE user_id = ? ORDER BY workout_datetime DESC LIMIT ?");
     $stmt->bind_param("ii", $user_id, $limit);
@@ -56,7 +56,7 @@ function get_recent_workouts($conn, $user_id, $limit = 4) {
     return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 }
 
-// Calories Chart එක සඳහා Data (පසුගිය Logs 7)
+// Data for Calories Chart 
 function get_calories_chart_history($conn, $user_id) {
     $stmt = $conn->prepare("SELECT log_date, total_calories FROM daily_fitness_logs WHERE user_id = ? ORDER BY log_date ASC LIMIT 7");
     $stmt->bind_param("i", $user_id);
