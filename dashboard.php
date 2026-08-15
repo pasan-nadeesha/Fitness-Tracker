@@ -29,10 +29,10 @@ $user_initial = !empty($display_name) ? strtoupper(substr($display_name, 0, 1)) 
             <span class="logo_text"></span> AURAFIT
         </div>
         <ul class="nav_links">
-            <li><a href="index.php">Home</a></li>
+            <li><a href="html/home.html">Home</a></li>
             <li><a href="dashboard.php" class="active">Dashboard</a></li>
-            <li><a href="contact.php">Contact</a></li>
-            <li><a href="auth/logout.php" class="btn-logout">Logout</a></li>
+            <li><a href="html/about.html">Contact</a></li>
+            <li><a href="../auth/logout.php" class="btn-logout">Logout</a></li>
         </ul>
     </nav>
 
