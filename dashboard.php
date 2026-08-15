@@ -1,13 +1,23 @@
+<?php
+require_once 'includes/db.php';
+require_once 'includes/functions.php';
+
+require_login();
+
+$user_id = $_SESSION['user_id'];
+
+$display_name = get_logged_in_name($conn, $user_id);
+
+$user_initial = !empty($display_name) ? strtoupper(substr($display_name, 0, 1)) : 'U';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboard - AURAFIT</title>
     
-    <link rel="stylesheet" href="../css/dashboard.css">
-    
-    
+    <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -15,15 +25,14 @@
 
     <nav class="navbar">
         <div class="logo">
-            <img src="../images/logo1.png" alt="AuraFit Logo" class="logo_img">
+            <img src="images/logo1.png" alt="AuraFit Logo" class="logo_img">
             <span class="logo_text"></span> AURAFIT
         </div>
         <ul class="nav_links">
-            <li><a href="../html/home.html">Home</a></li>
-            <li><a href="../html/dashboard.html">Dashboard</a></li>
-            <li><a href="../html/about.html">About</a></li>
-            <!--logout new added-->
-            <li><a href="../auth/logout.php" class="btn-logout">Logout</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="dashboard.php" class="active">Dashboard</a></li>
+            <li><a href="contact.php">Contact</a></li>
+            <li><a href="auth/logout.php" class="btn-logout">Logout</a></li>
         </ul>
     </nav>
 
@@ -36,9 +45,11 @@
         <!--content -->
         <div class="sidebar-content">
             <div class="user-profile">
-                <div class="avatar"><i class="fa-regular fa-user"></i></div>
+                <div class="avatar">
+                    <span><?php echo htmlspecialchars($user_initial); ?></span>
+                </div>
                 <div>
-                    <h4><?= $user_name ?></h4>
+                    <h4><?php echo htmlspecialchars($display_name); ?></h4>
                 </div>
             </div>
 
@@ -156,7 +167,6 @@
 
     <!-- RIGHT CONTENT-->
     <main class="main-content">
-        <!-- Hero Text -->
         <section class="hero">
             <h1>Monitor your fitness health journey</h1>
             <p>Track and analyze your performance in real time</p>
@@ -204,7 +214,7 @@
             </div>
         </section>
 
-        <!--ings & Recent Workouts -->
+        <!-- Rings & Recent Workouts -->
         <section class="bottom-grid">
             
             <!-- Daily Rings-->
@@ -250,7 +260,6 @@
                 </div>
                 
                 <div class="workout-list">
-                    <!-- Workout 1 -->
                     <div class="workout-item">
                         <div class="wo-icon bg-purple"><i class="fa-solid fa-shoe-prints"></i></div>
                         <div class="wo-info">
@@ -263,12 +272,10 @@
                         <div class="wo-stats">
                             <div class="wo-stat-box"><p>42 min</p><p>Duration</p></div>
                             <div class="wo-stat-box"><p>487</p><p>kcal</p></div>
-                            
                         </div>
                         <i class="fa-solid fa-chevron-right chevron-icon"></i>
                     </div>
 
-                    <!-- Workout 2 -->
                     <div class="workout-item">
                         <div class="wo-icon bg-green"><i class="fa-solid fa-person-biking"></i></div>
                         <div class="wo-info">
@@ -281,12 +288,10 @@
                         <div class="wo-stats">
                             <div class="wo-stat-box"><p>61 min</p><p>Duration</p></div>
                             <div class="wo-stat-box"><p>634</p><p>kcal</p></div>
-                           
                         </div>
                         <i class="fa-solid fa-chevron-right chevron-icon"></i>
                     </div>
 
-                    <!-- Workout 3 -->
                     <div class="workout-item">
                         <div class="wo-icon bg-orange"><i class="fa-solid fa-dumbbell"></i></div>
                         <div class="wo-info">
@@ -302,7 +307,7 @@
                         </div>
                         <i class="fa-solid fa-chevron-right chevron-icon"></i>
                     </div>
-                    <!-- Workout 4 -->
+
                     <div class="workout-item">
                         <div class="wo-icon bg-blue"><i class="fa-solid fa-water"></i></div>
                         <div class="wo-info">
@@ -315,7 +320,6 @@
                         <div class="wo-stats">
                             <div class="wo-stat-box"><p>35 min</p><p>Duration</p></div>
                             <div class="wo-stat-box"><p>276</p><p>kcal</p></div>
-                            
                         </div>
                         <i class="fa-solid fa-chevron-right chevron-icon"></i>
                     </div>
@@ -326,55 +330,38 @@
 </div>
 
 <!-- Footer Section -->
-        <footer class="footer">
-          <div class="footer_container">
-              
-              <!-- Left Section -->
-              <div class="footer_left">
-                  <div class="info_item">
-                      <div class="icon_box">
-                          <i class="fa-solid fa-location-dot"></i>
-                      </div>
-                      <p>
-                          <span>Rajarata University</span>
-                          <strong>Mihintale, Sri Lanka</strong>
-                      </p>
-                  </div>
+<footer class="footer">
+    <div class="footer_container">
+        <div class="footer_left">
+            <div class="info_item">
+                <div class="icon_box"><i class="fa-solid fa-location-dot"></i></div>
+                <p><span>Rajarata University</span> <strong>Mihintale, Sri Lanka</strong></p>
+            </div>
+            <div class="info_item">
+                <div class="icon_box"><i class="fa-solid fa-phone"></i></div>
+                <p><strong>+94 76 207 7199</strong></p>
+            </div>
+            <div class="info_item">
+                <div class="icon_box"><i class="fa-solid fa-envelope"></i></div>
+                <p><a href="mailto:aurafit@gmail.com">aurafit@gmail.com</a></p>
+            </div>
+        </div>
 
-                  <div class="info_item">
-                      <div class="icon_box">
-                          <i class="fa-solid fa-phone"></i>
-                      </div>
-                      <p><strong>+94 76 207 7199</strong></p>
-                  </div>
-
-                  <div class="info_item">
-                      <div class="icon_box">
-                          <i class="fa-solid fa-envelope"></i>
-                      </div>
-                        <p><a href="mailto:aurafit@gmail.com">aurafit@gmail.com</a></p>
-                      </div>
-              </div>
-
-              <!-- Right Section -->
-              <div class="footer_right">
-                  <h3>About the Website</h3>
-                  <p class="about_text">
-                      This website was developed as part of the ICT-1209 | Web Technologies
-                      course project. It showcases our learning, practical skills, and application of modern web design, frontend technologies, backend technologies, and web application development principles.
-                  </p>
-                  <div class="social_icons">
-                      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                      <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                      <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                      <a href="#"><i class="fa-brands fa-github"></i></a>
-                  </div>
-              </div>
-
-          </div>
+        <div class="footer_right">
+            <h3>About the Website</h3>
+            <p class="about_text">
+                This website was developed as part of the ICT-1209 | Web Technologies course project. It showcases our learning, practical skills, and application of modern web design, frontend technologies, backend technologies, and web application development principles.
+            </p>
+            <div class="social_icons">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </div>
 </footer>
 
-    <!--Script -->
-    <script src="../js/dashboard.js"></script>
+<script src="js/dashboard.js"></script>
 </body>
 </html>

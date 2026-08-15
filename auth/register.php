@@ -1,6 +1,6 @@
 <?php
 
-require '../includes/db_connect.php';
+require '../includes/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // collect data from the registration form

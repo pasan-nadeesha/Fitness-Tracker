@@ -20,7 +20,7 @@
     box-sizing: border-box;
 }
 
-body{
+body {
     background-image: url('../images/bg.png');
     background-repeat: no-repeat;
     background-position: center;
@@ -47,7 +47,8 @@ body{
     transform: translateY(-2px); 
     box-shadow: 0 6px 10px rgba(255, 71, 87, 0.3);
 }
-.navbar{
+
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -115,7 +116,6 @@ body{
     min-width: 0; 
     max-width: 1400px;
 }
-
 
 .sidebar {
     width: 350px;
@@ -195,7 +195,10 @@ body{
     display: flex; 
     justify-content: center; 
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    border: 2px solid #e0e7ff;
+    user-select: none;
 }
 
 .user-profile h4 { font-size: 1rem; margin-bottom: 2px; }
@@ -216,7 +219,6 @@ body{
 .form-row { display: flex; gap: 10px; margin-bottom: 15px; }
 .form-group { flex: 1; display: flex; flex-direction: column; gap: 5px; }
 .form-group label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600; }
-
 
 .activity-group {
     margin-bottom: 20px;
@@ -259,21 +261,21 @@ body{
     background: var(--brand-primary);
     color: white; 
     border: none; 
-    border-radius: 8px;
+    border-radius: 8px; 
     font-weight: 600; 
     font-size: 0.95rem; 
     cursor: pointer;
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    gap: 8px;
-    transition: background 0.2s;
+    gap: 8px; 
+    transition: background 0.2s; 
     margin-top: 20px;
 }
 
 .btn-calculate:hover { background: #2b6ce6; }
 
-/* ---Radio Buttons --- */
+/* --- Radio Buttons --- */
 .radio-group {
     display: flex;
     flex-direction: column;
@@ -348,7 +350,6 @@ body{
 .section-header h3 { font-size: 1.1rem; font-weight: 600; }
 .chart-container { height: 300px; width: 100%; }
 
-
 .chart-legend {
     display: flex;
     gap: 15px;
@@ -380,7 +381,7 @@ body{
     font-weight: 700;
 }
 
-/*Ring text classes */
+/* Ring text classes */
 .rings-title { font-size: 0.85rem; color: #9ca3af; text-transform: uppercase; }
 .progress-subtext { font-size: 0.75rem; color: #9ca3af; margin-top: 4px; }
 
@@ -390,7 +391,7 @@ body{
 .progress-track { height: 6px; background: #f3f4f6; border-radius: 4px; overflow: hidden; }
 .progress-fill { height: 100%; border-radius: 4px; transition: width 0.4s ease; }
 
-/*Colors for Daily Rings text & bars */
+/* Colors for Daily Rings text & bars */
 .txt-purple { color: #8b5cf6; }
 .txt-green { color: #10b981; }
 .txt-blue { color: #3b82f6; }
@@ -399,7 +400,6 @@ body{
 .bg-blue-fill { background: #3b82f6; width: 0%; }
 
 /* --- Recent Workouts List --- */
-
 .section-subtitle {
     font-size: 0.85rem; 
     color: #9ca3af; 
@@ -437,7 +437,6 @@ body{
 .wo-stat-box p:first-child { font-weight: 700; font-size: 0.95rem; }
 .wo-stat-box p:last-child { font-size: 0.75rem; color: var(--text-muted); }
 
-
 .chevron-icon {
     color: #d1d5db; 
     font-size: 0.8rem;
@@ -452,7 +451,6 @@ body{
 .bg-blue { background: var(--stat-blue-bg); color: var(--stat-blue-txt); }
 
 /* responsive */
-
 @media (max-width: 1024px) {
     .dashboard-wrapper {
         flex-direction: column; 
@@ -630,7 +628,6 @@ body{
     background-color: #5383d3;
     transform: translateY(-3px);
 }
-
 
 @media screen and (max-width: 768px) {
     .footer_container {
