@@ -47,7 +47,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>Age</label>
-                        <input type="number" name="age" id="body-age" class="form-control" value="<?php echo htmlspecialchars($latest_log['age'] ?? 28); ?>" required>
+                        <input type="number" name="age" id="body-age" class="form-control" placeholder="Age" value="<?php echo htmlspecialchars($latest_log['age'] ?? ''); ?>" required>
                     </div>
                     <div class="form-group">
                         <label>Gender</label>
@@ -61,11 +61,11 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>Weight (kg)</label>
-                        <input type="number" step="0.1" name="weight" class="form-control" value="<?php echo htmlspecialchars($latest_log['weight'] ?? 78); ?>" id="body-weight" required>
+                        <input type="number" step="0.1" name="weight" class="form-control" placeholder="e.g. 70" value="<?php echo htmlspecialchars($latest_log['weight'] ?? ''); ?>" id="body-weight" required>
                     </div>
                     <div class="form-group">
                         <label>Height (cm)</label>
-                        <input type="number" step="0.1" name="height" class="form-control" value="<?php echo htmlspecialchars($latest_log['height'] ?? 178); ?>" id="body-height" required>
+                        <input type="number" step="0.1" name="height" class="form-control" placeholder="e.g. 175" value="<?php echo htmlspecialchars($latest_log['height'] ?? ''); ?>" id="body-height" required>
                     </div>
                 </div>
 
@@ -91,7 +91,7 @@
                     <div class="w-input-group">
                         <label>Water Intake</label>
                         <div class="input-with-unit">
-                            <input type="number" step="0.1" name="water_intake" class="form-control" value="<?php echo htmlspecialchars($latest_log['water_intake'] ?? 1.8); ?>" id="water-input">
+                            <input type="number" step="0.1" name="water_intake" class="form-control" placeholder="0" value="<?php echo htmlspecialchars($latest_log['water_intake'] ?? ''); ?>" id="water-input">
                             <span>L</span>
                         </div>
                     </div>
@@ -167,28 +167,32 @@
                 <span class="stat-title">Workout Time</span>
                 <span class="stat-value" id="workout-display">
                     <?php 
-                        $t_min = $latest_log['total_workout_time'] ?? 0;
-                        echo floor($t_min / 60) . 'h ' . ($t_min % 60) . 'm';
+                        if (!empty($latest_log) && (int)$latest_log['total_workout_time'] > 0) {
+                            $t_min = (int)$latest_log['total_workout_time'];
+                            echo floor($t_min / 60) . 'h ' . ($t_min % 60) . 'm';
+                        } else {
+                            echo '0m';
+                        }
                     ?>
                 </span>
-                <span class="stat-sub">+15 min since yesterday</span>
+                <span class="stat-sub">Updated today</span>
             </div>
             <div class="stat-card stat-workouts">
                 <i class="fa-solid fa-weight-scale"></i>
                 <span class="stat-title">BMI</span>
-                <span class="stat-value" id="bmi-display"><?php echo htmlspecialchars($latest_log['bmi'] ?? '24.6'); ?></span>
-                <span class="stat-sub" id="bmi-status"><?php echo htmlspecialchars($latest_log['bmi_status'] ?? 'Normal weight'); ?></span>
+                <span class="stat-value" id="bmi-display"><?php echo htmlspecialchars($latest_log['bmi'] ?? '0.0'); ?></span>
+                <span class="stat-sub" id="bmi-status"><?php echo htmlspecialchars($latest_log['bmi_status'] ?? 'No data'); ?></span>
             </div>
             <div class="stat-card stat-calories">
                 <i class="fa-solid fa-fire"></i>
                 <span class="stat-title">Calories</span>
-                <span class="stat-value" id="calories-display"><?php echo number_format($latest_log['total_calories'] ?? 2458); ?></span>
-                <span class="stat-sub">+312 since yesterday</span>
+                <span class="stat-value" id="calories-display"><?php echo number_format($latest_log['total_calories'] ?? 0); ?></span>
+                <span class="stat-sub">Burned + Base kcal</span>
             </div>
             <div class="stat-card stat-hydration">
                 <i class="fa-solid fa-droplet"></i>
                 <span class="stat-title">Hydration</span>
-                <span class="stat-value" id="hydration-display"><?php echo htmlspecialchars($latest_log['water_intake'] ?? '1.8'); ?>L</span>
+                <span class="stat-value" id="hydration-display"><?php echo htmlspecialchars($latest_log['water_intake'] ?? '0.0'); ?>L</span>
                 <span class="stat-sub">Goal: 2.5L today</span>
             </div>
         </section>
@@ -210,7 +214,7 @@
         <!-- Rings & Recent Workouts -->
         <section class="bottom-grid">
             
-            <!-- Daily Rings (Cleaned from Inline CSS Errors) -->
+            <!-- Daily Rings -->
             <div class="card-panel" id="rings-data-holder" 
                  data-water="<?php echo (int)($pct_water ?? 0); ?>" 
                  data-exercise="<?php echo (int)($pct_exercise ?? 0); ?>" 
@@ -230,7 +234,7 @@
                         <span>Move</span> <span class="pct txt-purple" id="move-pct-text"><?php echo ($pct_move ?? 0); ?>%</span>
                     </div>
                     <div class="progress-track"><div class="progress-fill bg-purple-fill" id="move-bar"></div></div>
-                    <div class="progress-subtext" id="move-subtext"><?php echo number_format($cal ?? 2000); ?> / 2,500 kcal</div>
+                    <div class="progress-subtext" id="move-subtext"><?php echo number_format($cal ?? 0); ?> / 2,500 kcal</div>
                 </div>
 
                 <div class="progress-bar-group">

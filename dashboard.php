@@ -5,6 +5,7 @@ require_once 'includes/functions.php';
 require_login();
 $user_id = $_SESSION['user_id'];
 
+// Data save to database when form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_fitness'])) {
     $age = (int)$_POST['age'];
     $gender = sanitize_input($_POST['gender']);
@@ -60,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_fitness'])) {
     exit();
 }
 
+// 2. Fetch User & History Data
 $display_name = get_logged_in_name($conn, $user_id);
 $user_initial = !empty($display_name) ? strtoupper(substr($display_name, 0, 1)) : 'U';
 
@@ -67,15 +69,17 @@ $latest_log = get_latest_fitness_log($conn, $user_id);
 $recent_workouts = get_recent_workouts($conn, $user_id, 4);
 $chart_history = get_calories_chart_history($conn, $user_id);
 
-//Percentages calculation to Daily Rings
-$cal = $latest_log['total_calories'] ?? 2000;
-$mins = $latest_log['total_workout_time'] ?? 0;
-$water = $latest_log['water_intake'] ?? 0.0;
+// 3. Daily Rings & Card Calculations (New User Check)
+$has_log = !empty($latest_log);
 
-$pct_move = min(round(($cal / 2500) * 100), 100);
-$pct_exercise = min(round(($mins / 60) * 100), 100);
-$pct_water = min(round(($water / 2.5) * 100), 100);
-$avg_ring_pct = round(($pct_move + $pct_exercise + $pct_water) / 3);
+$cal = $has_log ? (int)$latest_log['total_calories'] : 0;
+$mins = $has_log ? (int)$latest_log['total_workout_time'] : 0;
+$water = $has_log ? (float)$latest_log['water_intake'] : 0.0;
+
+$pct_move = $has_log ? min(round(($cal / 2500) * 100), 100) : 0;
+$pct_exercise = $has_log ? min(round(($mins / 60) * 100), 100) : 0;
+$pct_water = $has_log ? min(round(($water / 2.5) * 100), 100) : 0;
+$avg_ring_pct = $has_log ? round(($pct_move + $pct_exercise + $pct_water) / 3) : 0;
 
 include 'html/dashboard.html';
 ?>
