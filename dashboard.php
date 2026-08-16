@@ -25,8 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_fitness'])) {
     $cycle_cals = $cycling * 8;
     $weight_cals = $weight_train * 6;
     $swim_cals = $swimming * 9;
+    
+    // Workout burn පමණක් calculate කර save කිරීම
     $workout_burn = $run_cals + $cycle_cals + $weight_cals + $swim_cals;
-    $total_calories = 2000 + $workout_burn;
 
     $bmi_data = calculate_bmi($weight, $height);
     $bmi = $bmi_data['bmi'];
@@ -36,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_fitness'])) {
 
     // Save Daily Summary
     $stmt = $conn->prepare("INSERT INTO daily_fitness_logs (user_id, age, gender, weight, height, activity_level, water_intake, total_workout_time, total_calories, bmi, bmi_status, log_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("iisddsdiidss", $user_id, $age, $gender, $weight, $height, $activity_level, $water_intake, $total_workout_time, $total_calories, $bmi, $bmi_status, $today);
+    $stmt->bind_param("iisddsdiidss", $user_id, $age, $gender, $weight, $height, $activity_level, $water_intake, $total_workout_time, $workout_burn, $bmi, $bmi_status, $today);
     $stmt->execute();
     $stmt->close();
 
@@ -69,17 +70,17 @@ $latest_log = get_latest_fitness_log($conn, $user_id);
 $recent_workouts = get_recent_workouts($conn, $user_id, 4);
 $chart_history = get_calories_chart_history($conn, $user_id);
 
-// 3. Daily Rings & Card Calculations (New User Check)
-$has_log = !empty($latest_log);
+// 3. Fetch Today's Cumulative Totals
+$today_totals = get_today_fitness_totals($conn, $user_id);
 
-$cal = $has_log ? (int)$latest_log['total_calories'] : 0;
-$mins = $has_log ? (int)$latest_log['total_workout_time'] : 0;
-$water = $has_log ? (float)$latest_log['water_intake'] : 0.0;
+$cal = (int)$today_totals['total_cals'];
+$mins = (int)$today_totals['total_time'];
+$water = (float)$today_totals['total_water'];
 
-$pct_move = $has_log ? min(round(($cal / 2500) * 100), 100) : 0;
-$pct_exercise = $has_log ? min(round(($mins / 60) * 100), 100) : 0;
-$pct_water = $has_log ? min(round(($water / 2.5) * 100), 100) : 0;
-$avg_ring_pct = $has_log ? round(($pct_move + $pct_exercise + $pct_water) / 3) : 0;
+$pct_move = min(round(($cal / 500) * 100), 100);
+$pct_exercise = min(round(($mins / 60) * 100), 100);
+$pct_water = min(round(($water / 2.5) * 100), 100);
+$avg_ring_pct = round(($pct_move + $pct_exercise + $pct_water) / 3);
 
 include 'html/dashboard.html';
 ?>

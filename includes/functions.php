@@ -40,7 +40,7 @@ function calculate_bmi($weight, $height_cm) {
     return ['bmi' => $bmi, 'status' => $status];
 }
 
-// User Daily Summary Log
+// User Daily Summary Log (Latest record for Body Details)
 function get_latest_fitness_log($conn, $user_id) {
     $stmt = $conn->prepare("SELECT * FROM daily_fitness_logs WHERE user_id = ? ORDER BY id DESC LIMIT 1");
     $stmt->bind_param("i", $user_id);
@@ -58,7 +58,7 @@ function get_recent_workouts($conn, $user_id, $limit = 4) {
 
 // Data for Calories Chart 
 function get_calories_chart_history($conn, $user_id) {
-    $stmt = $conn->prepare("SELECT log_date, total_calories FROM daily_fitness_logs WHERE user_id = ? ORDER BY log_date ASC LIMIT 7");
+    $stmt = $conn->prepare("SELECT log_date, SUM(total_calories) as total_calories FROM daily_fitness_logs WHERE user_id = ? GROUP BY log_date ORDER BY log_date ASC LIMIT 7");
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -70,5 +70,21 @@ function get_calories_chart_history($conn, $user_id) {
         $data[] = (int)$row['total_calories'];
     }
     return ['labels' => $labels, 'data' => $data];
+}
+
+// අද දවසේ මුළු Workout Time, Calories, සහ Water Intake වල එකතුව ලබා ගැනීම
+function get_today_fitness_totals($conn, $user_id) {
+    $today = date('Y-m-d');
+    $stmt = $conn->prepare("
+        SELECT 
+            COALESCE(SUM(total_workout_time), 0) as total_time,
+            COALESCE(SUM(total_calories), 0) as total_cals,
+            COALESCE(SUM(water_intake), 0) as total_water
+        FROM daily_fitness_logs 
+        WHERE user_id = ? AND log_date = ?
+    ");
+    $stmt->bind_param("is", $user_id, $today);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_assoc();
 }
 ?>

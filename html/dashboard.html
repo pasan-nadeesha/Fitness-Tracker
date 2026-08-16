@@ -91,7 +91,7 @@
                     <div class="w-input-group">
                         <label>Water Intake</label>
                         <div class="input-with-unit">
-                            <input type="number" step="0.1" name="water_intake" class="form-control" placeholder="0" value="<?php echo htmlspecialchars($latest_log['water_intake'] ?? ''); ?>" id="water-input">
+                            <input type="number" step="0.1" name="water_intake" class="form-control" placeholder="0" value="" id="water-input">
                             <span>L</span>
                         </div>
                     </div>
@@ -165,17 +165,18 @@
             <div class="stat-card stat-steps">
                 <i class="fa-solid fa-stopwatch"></i>
                 <span class="stat-title">Workout Time</span>
-                <span class="stat-value" id="workout-display">
+                <span class="stat-value" id="workout-display" data-saved-mins="<?php echo $mins; ?>">
                     <?php 
-                        if (!empty($latest_log) && (int)$latest_log['total_workout_time'] > 0) {
-                            $t_min = (int)$latest_log['total_workout_time'];
-                            echo floor($t_min / 60) . 'h ' . ($t_min % 60) . 'm';
+                        if ($mins > 0) {
+                            $h = floor($mins / 60);
+                            $m = $mins % 60;
+                            echo ($h > 0 ? "{$h}h " : "") . "{$m}m";
                         } else {
                             echo '0m';
                         }
                     ?>
                 </span>
-                <span class="stat-sub">Updated today</span>
+                <span class="stat-sub">Today's Total</span>
             </div>
             <div class="stat-card stat-workouts">
                 <i class="fa-solid fa-weight-scale"></i>
@@ -186,13 +187,17 @@
             <div class="stat-card stat-calories">
                 <i class="fa-solid fa-fire"></i>
                 <span class="stat-title">Calories</span>
-                <span class="stat-value" id="calories-display"><?php echo number_format($latest_log['total_calories'] ?? 0); ?></span>
-                <span class="stat-sub">Burned + Base kcal</span>
+                <span class="stat-value" id="calories-display" data-saved-cals="<?php echo $cal; ?>">
+                    <?php echo number_format($cal); ?>
+                </span>
+                <span class="stat-sub">Burned today (kcal)</span>
             </div>
             <div class="stat-card stat-hydration">
                 <i class="fa-solid fa-droplet"></i>
                 <span class="stat-title">Hydration</span>
-                <span class="stat-value" id="hydration-display"><?php echo htmlspecialchars($latest_log['water_intake'] ?? '0.0'); ?>L</span>
+                <span class="stat-value" id="hydration-display" data-saved-water="<?php echo $water; ?>">
+                    <?php echo number_format($water, 1); ?>L
+                </span>
                 <span class="stat-sub">Goal: 2.5L today</span>
             </div>
         </section>
@@ -234,7 +239,7 @@
                         <span>Move</span> <span class="pct txt-purple" id="move-pct-text"><?php echo ($pct_move ?? 0); ?>%</span>
                     </div>
                     <div class="progress-track"><div class="progress-fill bg-purple-fill" id="move-bar"></div></div>
-                    <div class="progress-subtext" id="move-subtext"><?php echo number_format($cal ?? 0); ?> / 2,500 kcal</div>
+                    <div class="progress-subtext" id="move-subtext"><?php echo number_format($cal ?? 0); ?> / 500 kcal</div>
                 </div>
 
                 <div class="progress-bar-group">
@@ -250,7 +255,7 @@
                         <span>Hydration</span> <span class="pct txt-blue" id="water-pct-text"><?php echo ($pct_water ?? 0); ?>%</span>
                     </div>
                     <div class="progress-track"><div class="progress-fill bg-blue-fill" id="water-bar"></div></div>
-                    <div class="progress-subtext" id="water-subtext"><?php echo ($water ?? 0.0); ?> / 2.5 L</div>
+                    <div class="progress-subtext" id="water-subtext"><?php echo number_format($water ?? 0.0, 1); ?> / 2.5 L</div>
                 </div>
             </div>
 

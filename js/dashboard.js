@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (ctxLineEl) {
         const ctxLine = ctxLineEl.getContext('2d');
         const chartLabels = chartHistory.labels && chartHistory.labels.length > 0 ? chartHistory.labels : ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'];
-        const chartData = chartHistory.data && chartHistory.data.length > 0 ? chartHistory.data : [2200, 2500, 2100, 2700, 2400, 2650, 2800];
+        const chartData = chartHistory.data && chartHistory.data.length > 0 ? chartHistory.data : [0, 0, 0, 0, 0, 0, 0];
 
         let gradientBlue = ctxLine.createLinearGradient(0, 0, 0, 300);
         gradientBlue.addColorStop(0, 'rgba(59, 130, 246, 0.15)');
@@ -69,8 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 scales: {
                     y: {
                         beginAtZero: true,
-                        max: 3000,
-                        ticks: { stepSize: 750, color: '#9ca3af', font: { size: 11 } },
+                        ticks: { stepSize: 200, color: '#9ca3af', font: { size: 11 } },
                         border: { display: false },
                         grid: { color: '#f3f4f6' }
                     },
@@ -151,46 +150,63 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Calculate & Live Update Function
     function updateDashboardUI() {
-        let waterValue = parseFloat(document.getElementById('water-input')?.value) || 0;
+        // 1. Saved Cumulative Totals from HTML
+        let workoutEl = document.getElementById('workout-display');
+        let calsEl = document.getElementById('calories-display');
         let hydrationEl = document.getElementById('hydration-display');
-        if (hydrationEl) hydrationEl.innerText = waterValue + 'L';
 
+        let savedMins = parseInt(workoutEl?.getAttribute('data-saved-mins')) || 0;
+        let savedCals = parseInt(calsEl?.getAttribute('data-saved-cals')) || 0;
+        let savedWater = parseFloat(hydrationEl?.getAttribute('data-saved-water')) || 0.0;
+
+        // 2. Current Session Inputs
+        let inputWater = parseFloat(document.getElementById('water-input')?.value) || 0.0;
         let run = parseInt(document.getElementById('run-input')?.value) || 0;
         let cycle = parseInt(document.getElementById('cycle-input')?.value) || 0;
         let weight = parseInt(document.getElementById('weight-input')?.value) || 0;
         let swim = parseInt(document.getElementById('swim-input')?.value) || 0;
 
-        let totalMinutes = run + cycle + weight + swim;
-        let hours = Math.floor(totalMinutes / 60);
-        let mins = totalMinutes % 60;
-        let timeString = (hours > 0) ? `${hours}h ${mins}m` : `${mins}m`;
+        let currentInputMins = run + cycle + weight + swim;
+        let currentInputCals = (run * 10) + (cycle * 8) + (weight * 6) + (swim * 9);
 
-        let workoutEl = document.getElementById('workout-display');
-        if (workoutEl) workoutEl.innerText = totalMinutes > 0 ? timeString : "0m";
+        // 3. Grand Totals for Today
+        let totalMins = savedMins + currentInputMins;
+        let totalCals = savedCals + currentInputCals;
+        let totalWater = savedWater + inputWater;
 
-        let workoutBurn = (run * 10) + (cycle * 8) + (weight * 6) + (swim * 9);
-        let totalCalories = 2000 + workoutBurn;
-        let calsEl = document.getElementById('calories-display');
-        if (calsEl) calsEl.innerText = totalCalories.toLocaleString();
+        // 4. Update Cards
+        if (workoutEl) {
+            let h = Math.floor(totalMins / 60);
+            let m = totalMins % 60;
+            workoutEl.innerText = (totalMins > 0) ? ((h > 0 ? `${h}h ` : '') + `${m}m`) : '0m';
+        }
 
+        if (calsEl) {
+            calsEl.innerText = totalCals.toLocaleString();
+        }
+
+        if (hydrationEl) {
+            hydrationEl.innerText = `${totalWater.toFixed(1)}L`;
+        }
+
+        // 5. BMI Calculation
         let bodyWeight = parseFloat(document.getElementById('body-weight')?.value) || 0;
         let bodyHeight = parseFloat(document.getElementById('body-height')?.value) || 0;
+        let bmiEl = document.getElementById('bmi-display');
+        let bmiStatEl = document.getElementById('bmi-status');
 
         if (bodyWeight > 0 && bodyHeight > 0) {
             let heightMeters = bodyHeight / 100;
             let bmi = (bodyWeight / (heightMeters * heightMeters)).toFixed(1);
             let category = (bmi < 18.5) ? "Underweight" : ((bmi < 25) ? "Normal weight" : ((bmi < 30) ? "Overweight" : "Obese"));
-
-            let bmiEl = document.getElementById('bmi-display');
-            let bmiStatEl = document.getElementById('bmi-status');
             if (bmiEl) bmiEl.innerText = bmi;
             if (bmiStatEl) bmiStatEl.innerText = category;
         }
 
-        // Daily Rings & Progress Bars Calculations
-        let pctMove = Math.min(Math.round((totalCalories / 2500) * 100), 100);
-        let pctExercise = Math.min(Math.round((totalMinutes / 60) * 100), 100);
-        let pctWater = Math.min(Math.round((waterValue / 2.5) * 100), 100);
+        // 6. Rings & Progress Bars Calculations
+        let pctMove = Math.min(Math.round((totalCals / 500) * 100), 100);
+        let pctExercise = Math.min(Math.round((totalMins / 60) * 100), 100);
+        let pctWater = Math.min(Math.round((totalWater / 2.5) * 100), 100);
         let avgPct = Math.round((pctMove + pctExercise + pctWater) / 3);
 
         // Update Rings Chart Datasets
@@ -210,20 +226,20 @@ document.addEventListener('DOMContentLoaded', function () {
         let moveSub = document.getElementById('move-subtext');
         if (movePctText) movePctText.innerText = pctMove + "%";
         if (moveBar) moveBar.style.width = pctMove + "%";
-        if (moveSub) moveSub.innerText = `${totalCalories.toLocaleString()} / 2,500 kcal`;
+        if (moveSub) moveSub.innerText = `${totalCals.toLocaleString()} / 500 kcal`;
 
         let exPctText = document.getElementById('exercise-pct-text');
         let exBar = document.getElementById('exercise-bar');
         let exSub = document.getElementById('exercise-subtext');
         if (exPctText) exPctText.innerText = pctExercise + "%";
         if (exBar) exBar.style.width = pctExercise + "%";
-        if (exSub) exSub.innerText = `${totalMinutes} / 60 min`;
+        if (exSub) exSub.innerText = `${totalMins} / 60 min`;
 
         let wPctText = document.getElementById('water-pct-text');
         let wBar = document.getElementById('water-bar');
         let wSub = document.getElementById('water-subtext');
         if (wPctText) wPctText.innerText = pctWater + "%";
         if (wBar) wBar.style.width = pctWater + "%";
-        if (wSub) wSub.innerText = `${waterValue} / 2.5 L`;
+        if (wSub) wSub.innerText = `${totalWater.toFixed(1)} / 2.5 L`;
     }
 });
