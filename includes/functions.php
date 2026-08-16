@@ -72,7 +72,7 @@ function get_calories_chart_history($conn, $user_id) {
     return ['labels' => $labels, 'data' => $data];
 }
 
-// අද දවසේ මුළු Workout Time, Calories, සහ Water Intake වල එකතුව ලබා ගැනීම
+//sum
 function get_today_fitness_totals($conn, $user_id) {
     $today = date('Y-m-d');
     $stmt = $conn->prepare("
