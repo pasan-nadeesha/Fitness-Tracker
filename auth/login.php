@@ -16,22 +16,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         // Verify password
         if (password_verify($input_password, $user['password']) || $input_password === $user['password']) {
-            
-            // Data save
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             
-            $fullName = trim($user['first_name'] . ' ' . $user['last_name']);
+            $fullName = trim(($user['first_name'] ?? '') . ' ' . ($user['last_name'] ?? ''));
             $_SESSION['full_name'] = !empty($fullName) ? $fullName : $user['username'];
             
             header("Location: ../dashboard.php");
             exit();
         } else {
-            echo "<script>alert('Incorrect password! Please try again.'); window.location.href='login.php';</script>";
+            // If password is incorrect
+            header("Location: ../html/login.html?error=incorrect_password#toggle-login");
             exit();
         }
     } else {
-        echo "<script>alert('Email not found! Please register first.'); window.location.href='login.php';</script>";
+        // If email is not found
+        header("Location: ../html/login.html?error=email_not_found#toggle-login");
         exit();
     }
     $stmt->close();
