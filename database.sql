@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 15, 2026 at 12:06 PM
+-- Generation Time: Aug 16, 2026 at 01:17 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -44,17 +44,6 @@ CREATE TABLE `daily_fitness_logs` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `daily_fitness_logs`
---
-
-INSERT INTO `daily_fitness_logs` (`id`, `user_id`, `age`, `gender`, `weight`, `height`, `activity_level`, `water_intake`, `total_workout_time`, `total_calories`, `bmi`, `bmi_status`, `log_date`, `created_at`) VALUES
-(1, 5, 28, 'Male', 78.00, 178.00, 'moderately_active', 1.80, 65, 2560, 24.6, 'Normal weight', '2026-08-15', '2026-08-15 09:05:46'),
-(2, 5, 28, 'Male', 78.00, 178.00, 'moderately_active', 1.80, 65, 2535, 24.6, 'Normal weight', '2026-08-15', '2026-08-15 09:06:47'),
-(3, 5, 22, 'Female', 45.00, 152.00, 'very_active', 1.80, 60, 2510, 19.5, 'Normal weight', '2026-08-15', '2026-08-15 09:22:59'),
-(4, 5, 22, 'Female', 45.00, 152.00, 'moderately_active', 1.80, 57, 2467, 19.5, 'Normal weight', '2026-08-15', '2026-08-15 09:43:34'),
-(5, 6, 28, 'Male', 78.00, 178.00, 'moderately_active', 1.80, 58, 2481, 24.6, 'Normal weight', '2026-08-15', '2026-08-15 09:46:04');
-
 -- --------------------------------------------------------
 
 --
@@ -76,10 +65,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `username`, `password`, `created_at`) VALUES
-(4, 'Kavishka', 'Dhananjaya', 'kavishkadhananjayaab@gmail.com', 'kavishka', '$2y$10$erUVNF6tz8edzCbXZNlKBeF6XQYjKrDvYi1wBQ5bYYOJgo4FXc.o6', '2026-08-11 20:28:51'),
-(5, 'Pasan', 'Nadeesha', 'pasannadeesha1@gmail.com', 'pasannadeesha', '$2y$10$VOddEckwk0mGjqapiFoDpeTafUyWMoEwMkJ.toz6271NgIbk1E0Jy', '2026-08-14 16:47:01'),
-(6, 'Dushan', 'Eranda', 'dushan@gmail.com', 'dushan', '$2y$10$h1UnlgxnLZ0sMJ67plK7Je5uBbd.u8W.mN9lkywrhcQooDBi9YcGy', '2026-08-15 09:27:00'),
-(7, 'Zenith', 'Chethiya', 'zenith@gmail.com', 'zenith', '$2y$10$JGWkapZ7D51sk69UE.KKdOtV9ffClS7z6nkH1X0mfL0X.brHMr0J.', '2026-08-15 10:00:31');
+(8, 'Pasan', 'Nadeesha', 'pasannadeesha1@gmail.com', 'pasannadeesha', '$2y$10$DMejtrtsnw0afwqPc3ZXfe4Blx6b6VnEnEcH23JIRnisMrg0nUxU2', '2026-08-16 11:14:58');
 
 -- --------------------------------------------------------
 
@@ -96,32 +82,6 @@ CREATE TABLE `workout_history` (
   `intensity` varchar(20) DEFAULT 'Moderate',
   `workout_datetime` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `workout_history`
---
-
-INSERT INTO `workout_history` (`id`, `user_id`, `workout_type`, `duration_min`, `calories_burned`, `intensity`, `workout_datetime`) VALUES
-(1, 5, 'Running', 20, 200, 'High', '2026-08-15 11:05:46'),
-(2, 5, 'Cycling', 15, 120, 'Moderate', '2026-08-15 11:05:46'),
-(3, 5, 'Weight Training', 10, 60, 'High', '2026-08-15 11:05:46'),
-(4, 5, 'Swimming', 20, 180, 'Moderate', '2026-08-15 11:05:46'),
-(5, 5, 'Running', 10, 100, 'High', '2026-08-15 11:06:47'),
-(6, 5, 'Cycling', 30, 240, 'Moderate', '2026-08-15 11:06:47'),
-(7, 5, 'Weight Training', 10, 60, 'High', '2026-08-15 11:06:47'),
-(8, 5, 'Swimming', 15, 135, 'Moderate', '2026-08-15 11:06:47'),
-(9, 5, 'Running', 15, 150, 'High', '2026-08-15 11:22:59'),
-(10, 5, 'Cycling', 15, 120, 'Moderate', '2026-08-15 11:22:59'),
-(11, 5, 'Weight Training', 10, 60, 'High', '2026-08-15 11:22:59'),
-(12, 5, 'Swimming', 20, 180, 'Moderate', '2026-08-15 11:22:59'),
-(13, 5, 'Running', 10, 100, 'High', '2026-08-15 11:43:34'),
-(14, 5, 'Cycling', 20, 160, 'Moderate', '2026-08-15 11:43:34'),
-(15, 5, 'Weight Training', 12, 72, 'High', '2026-08-15 11:43:34'),
-(16, 5, 'Swimming', 15, 135, 'Moderate', '2026-08-15 11:43:34'),
-(17, 6, 'Running', 10, 100, 'High', '2026-08-15 11:46:04'),
-(18, 6, 'Cycling', 15, 120, 'Moderate', '2026-08-15 11:46:04'),
-(19, 6, 'Weight Training', 12, 72, 'High', '2026-08-15 11:46:04'),
-(20, 6, 'Swimming', 21, 189, 'Moderate', '2026-08-15 11:46:04');
 
 --
 -- Indexes for dumped tables
@@ -157,19 +117,19 @@ ALTER TABLE `workout_history`
 -- AUTO_INCREMENT for table `daily_fitness_logs`
 --
 ALTER TABLE `daily_fitness_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `workout_history`
 --
 ALTER TABLE `workout_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- Constraints for dumped tables
