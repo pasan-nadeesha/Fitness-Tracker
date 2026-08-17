@@ -13,7 +13,7 @@
         
         <!-- Logo -->
         <header class="logo-container">
-            <img src="../images/logo1.png" alt="AuraFit brand logo with stylized lettering for a fitness and wellness app" class="logo-img">
+            <img src="../images/logo1.png" alt="AuraFit brand logo" class="logo-img">
             <span class="logo-text">AURAFIT</span>
         </header>
 
@@ -66,8 +66,20 @@
         </main>
 
     </div>
+
+    <!-- Center Popup Box Modal -->
+    <div id="errorPopupModal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 id="modalTitle">Login Failed</h3>
+            <p id="modalErrorMessage">Incorrect email or password. Please try again.</p>
+            <button type="button" class="btn-modal-close" onclick="closeErrorPopup()">Try Again</button>
+        </div>
+    </div>
     
-    <!-- script for toggle switch login -->
+    <!-- Script for toggle switch login and popup -->
     <script src="../js/login.js"></script>
 
 </body>
