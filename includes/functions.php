@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 function require_login() {
     if (!isset($_SESSION['user_id'])) {
-        header("Location: auth/login.php");
+        header("Location: html/login.html#toggle-login");
         exit();
     }
 }

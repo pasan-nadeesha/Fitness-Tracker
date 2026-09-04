@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2026 at 01:17 PM
+-- Generation Time: Sep 04, 2026 at 06:56 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -43,6 +43,14 @@ CREATE TABLE `daily_fitness_logs` (
   `log_date` date NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `daily_fitness_logs`
+--
+
+INSERT INTO `daily_fitness_logs` (`id`, `user_id`, `age`, `gender`, `weight`, `height`, `activity_level`, `water_intake`, `total_workout_time`, `total_calories`, `bmi`, `bmi_status`, `log_date`, `created_at`) VALUES
+(17, 8, 22, 'Male', 52.00, 152.00, 'lightly_active', 1.00, 51, 439, 22.5, 'Normal weight', '2026-08-16', '2026-08-16 11:20:01'),
+(18, 8, 22, 'Male', 52.00, 152.00, 'moderately_active', 0.60, 40, 325, 22.5, 'Normal weight', '2026-08-16', '2026-08-16 12:08:17');
 
 -- --------------------------------------------------------
 
@@ -84,6 +92,20 @@ CREATE TABLE `workout_history` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `workout_history`
+--
+
+INSERT INTO `workout_history` (`id`, `user_id`, `workout_type`, `duration_min`, `calories_burned`, `intensity`, `workout_datetime`) VALUES
+(64, 8, 'Running', 10, 100, 'High', '2026-08-16 13:20:01'),
+(65, 8, 'Cycling', 15, 120, 'Moderate', '2026-08-16 13:20:01'),
+(66, 8, 'Weight Training', 5, 30, 'High', '2026-08-16 13:20:01'),
+(67, 8, 'Swimming', 21, 189, 'Moderate', '2026-08-16 13:20:01'),
+(68, 8, 'Running', 5, 50, 'High', '2026-08-16 14:08:17'),
+(69, 8, 'Cycling', 10, 80, 'Moderate', '2026-08-16 14:08:17'),
+(70, 8, 'Weight Training', 10, 60, 'High', '2026-08-16 14:08:17'),
+(71, 8, 'Swimming', 15, 135, 'Moderate', '2026-08-16 14:08:17');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -117,7 +139,7 @@ ALTER TABLE `workout_history`
 -- AUTO_INCREMENT for table `daily_fitness_logs`
 --
 ALTER TABLE `daily_fitness_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -129,7 +151,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `workout_history`
 --
 ALTER TABLE `workout_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- Constraints for dumped tables

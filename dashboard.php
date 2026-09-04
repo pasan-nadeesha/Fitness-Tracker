@@ -26,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_fitness'])) {
     $weight_cals = $weight_train * 6;
     $swim_cals = $swimming * 9;
     
-    // Workout burn පමණක් calculate කර save කිරීම
     $workout_burn = $run_cals + $cycle_cals + $weight_cals + $swim_cals;
 
     $bmi_data = calculate_bmi($weight, $height);
@@ -37,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_fitness'])) {
 
     // Save Daily Summary
     $stmt = $conn->prepare("INSERT INTO daily_fitness_logs (user_id, age, gender, weight, height, activity_level, water_intake, total_workout_time, total_calories, bmi, bmi_status, log_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("iisddsdiidss", $user_id, $age, $gender, $weight, $height, $activity_level, $water_intake, $total_workout_time, $workout_burn, $bmi, $bmi_status, $today);
+    $stmt->bind_param("iisddsdiddss", $user_id, $age, $gender, $weight, $height, $activity_level, $water_intake, $total_workout_time, $workout_burn, $bmi, $bmi_status, $today);
     $stmt->execute();
     $stmt->close();
 
