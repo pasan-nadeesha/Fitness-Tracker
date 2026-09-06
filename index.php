@@ -5,14 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-        <link rel="stylesheet" href="../css/home.css">
+        <link rel="stylesheet" href="css/home.css">
     </head>
     <body>
 
         <!--Navigation bar-->
         <nav class="navbar">
         <div class="logo">
-            <img src="../images/logo1.png" alt="AuraFit Logo" class="logo_img">
+            <img src="images/logo1.png" alt="AuraFit Logo" class="logo_img">
             <span class="logo_text">AURAFIT</span> 
         </div>
 
@@ -24,8 +24,8 @@
 
         <ul class="nav_links">
             <li><a href="home.html">Home</a></li>
-            <li><a href="../dashboard.php">Dashboard</a></li>
-            <li><a href="../html/about.html">About</a></li>
+            <li><a href="dashboard.php">Dashboard</a></li>
+            <li><a href="contact.php">Contact</a></li>
         </ul>
         </nav>
 
@@ -35,11 +35,11 @@
                 <h1>TRACK YOUR<br>FITNESS</h1>
                 <p class="main_subtitle">YOUR FITNESS JOURNEY, IN PERFECT BALANCE</p>
                 <div class="main_button">
-                    <a href="../html/login.html#toggle-register" class="register_button2">Register</a>
-                    <a href="../html/login.html#toggle-login" class="login_button">Log in</a>
+                    <a href="html/login.html#toggle-register" class="register_button2">Register</a>
+                    <a href="html/login.html#toggle-login" class="login_button">Log in</a>
                 </div>
             </div> 
-            <img src="../images/persons.png" alt="Fitness Men & Women" class="fitness_image">       
+            <img src="images/persons.png" alt="Fitness Men & Women" class="fitness_image">       
         </main>
 
         <!--Dynamic Slider Section-->
@@ -47,60 +47,60 @@
     <div class="slider-track" id="sliderTrack">
       
       <!-- Card 1 -->
-      <a href="../html/content.html#nutrition&vitamin">
+      <a href="html/content.html#nutrition&vitamin">
       <div class="feature-card">
         <div class="card-image-wrapper">
-          <img src="../images/nutrition_&_vitamin.jpeg" alt="Nutrition & Vitamin">
+          <img src="images/nutrition_&_vitamin.jpeg" alt="Nutrition & Vitamin">
         </div>
         <h3>Nutrition & Vitamin</h3>
       </div>
       </a>
 
       <!-- Card 2 -->
-      <a href="../html/content.html#lifestyle&wellness">
+      <a href="html/content.html#lifestyle&wellness">
       <div class="feature-card">
         <div class="card-image-wrapper">
-          <img src="../images/lifestyle_&_wellness.jpeg" alt="Lifestyle & Wellness">
+          <img src="images/lifestyle_&_wellness.jpeg" alt="Lifestyle & Wellness">
         </div>
         <h3>Lifestyle & Wellness</h3>
       </div>
       </a>
 
       <!-- Card 3 -->
-      <a href="../html/content.html#workoutgear">
+      <a href="html/content.html#workoutgear">
       <div class="feature-card">
         <div class="card-image-wrapper">
-          <img src="../images/workout_gear.jpeg" alt="Workout Gear">
+          <img src="images/workout_gear.jpeg" alt="Workout Gear">
         </div>
         <h3>Workout Gear</h3>
       </div>
       </a>
 
       <!-- Card 4 -->
-      <a href="../html/content.html#healthymeals">
+      <a href="html/content.html#healthymeals">
       <div class="feature-card">
         <div class="card-image-wrapper">
-          <img src="../images/healthy_meal.jpeg" alt="Healthy Meals">
+          <img src="images/healthy_meal.jpeg" alt="Healthy Meals">
         </div>
         <h3>Healthy Meals</h3>
       </div>
       </a>
 
       <!-- Card 5 -->
-      <a href="../html/content.html#habits">
+      <a href="html/content.html#habits">
       <div class="feature-card">
         <div class="card-image-wrapper">
-          <img src="../images/habits.jpeg" alt="Habits">
+          <img src="images/habits.jpeg" alt="Habits">
         </div>
         <h3>Habits</h3>
       </div>
       </a>
 
       <!-- Card 6 -->
-      <a href="../html/content.html#sleeping">
+      <a href="html/content.html#sleeping">
       <div class="feature-card">
         <div class="card-image-wrapper">
-          <img src="../images/sleep.jpeg" alt="Sleeping">
+          <img src="images/sleep.jpeg" alt="Sleeping">
         </div>
         <h3>Sleeping</h3>
       </div>
@@ -158,7 +158,7 @@
           </div>
 </footer>
 
-        <script src="../js/home.js"></script>
+        <script src="js/home.js"></script>
 
 
     </body>

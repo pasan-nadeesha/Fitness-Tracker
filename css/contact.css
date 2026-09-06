@@ -12,7 +12,7 @@ body {
     background-size: cover;
 }
 
-/* Navigation Bar */
+/* Navigation bar */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -78,7 +78,7 @@ body {
     color: #1e293b;
 }
 
-/* Vision & Mission */
+/* Vision and Mission */
 .vision_container {
     display: flex;
     flex-direction: column;
@@ -114,7 +114,7 @@ body {
     border: 4px solid #1124a2;
     border-radius: 25px;
     padding: 30px 50px;
-    margin: 90px 170px 100px 170px;
+    margin: 90px 170px 90px 170px;
 }
 
 .mission_title h2 {
@@ -131,6 +131,71 @@ body {
     font-size: 1.2rem;
     text-align: center;
     line-height: 2;
+}
+
+/* Contact form section */
+.contact_container {
+    background-color: #ebebeb;
+    border: 1px solid #e3e3e3;
+    border-radius: 15px;
+    padding: 40px 50px;
+    box-shadow: 0 8px 24px rgba(110, 110, 110, 0.4);
+    font-family: 'Poppins', sans-serif;
+    max-width: 800px;
+    margin: 0px auto 100px auto;
+    opacity: 1 !important; /* Force visible */
+    transform: none !important;
+}
+
+.contact_form .form_group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.contact_form label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+.contact_form input,
+.contact_form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 0.95rem;
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact_form input:focus,
+.contact_form textarea:focus {
+    border-color: #182fc3;
+    box-shadow: 0 0 8px rgba(24, 47, 195, 0.2);
+}
+
+.contact_form button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    background-color: #1124a2;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.contact_form button[type="submit"]:hover {
+    background-color: #182fc3;
+    transform: translateY(-2px);
 }
 
 /* University Banner */
@@ -271,7 +336,7 @@ body {
 .social_icon.linkedin:hover { color: #0A66C2; }
 .social_icon.github:hover { color: #24292e; }
 
-/* Scroll Animation */
+/* Scroll animations */
 .vision_container, .mission_container, .university_banner, .member_card {
     opacity: 0;
     transform: translateY(30px);
@@ -283,7 +348,7 @@ body {
     transform: translateY(0);
 }
 
-/* Hover Scale Effects (Revealed වුණාට පස්සෙත් වැඩ කිරීමට) */
+/* Hover effects */
 .university_banner:hover, .university_banner.revealed:hover {
     transform: translateY(0) scale(1.03) !important;
     box-shadow: 0 12px 30px rgba(110, 110, 110, 0.6);
@@ -294,7 +359,7 @@ body {
     box-shadow: 0 12px 30px rgba(110, 110, 110, 0.6);
 }
 
-/* Responsive Media */
+/* Responsive styles */
 @media screen and (max-width: 868px) {
     .vision_container, .mission_container {
         margin: 100px 5% 0px 5%;
@@ -304,6 +369,12 @@ body {
     .mission_container {
         margin-top: 40px;
         margin-bottom: 50px;
+    }
+
+    .contact_container {
+        width: 90%;
+        padding: 25px 20px;
+        margin-bottom: 60px;
     }
 
     .university_banner {
@@ -365,7 +436,7 @@ body {
         font-size: 1.2rem;
     }
 
-    .vision_title h2, .mission_title h2, .team_member_title {
+    .vision_title h2, .mission_title h2, .contact_title h2, .team_member_title {
         font-size: 1.5rem;
     }
 
@@ -384,6 +455,7 @@ body {
     }
 }
 
+/* Footer section */
 .footer {
     background-color: #2c2f33;
     color: #ffffff;
@@ -496,7 +568,6 @@ body {
     background-color: #5383d3;
     transform: translateY(-3px);
 }
-
 
 @media screen and (max-width: 768px) {
     .footer_container {
