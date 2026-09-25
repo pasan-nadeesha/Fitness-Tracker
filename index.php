@@ -148,10 +148,10 @@
                       course project. It showcases our learning, practical skills, and application of modern web design, frontend technologies, backend technologies, and web application development principles.
                   </p>
                   <div class="social_icons">
-                      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                      <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                      <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                      <a href="#"><i class="fa-brands fa-github"></i></a>
+                      <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f"></i></a>
+                      <a href="https://x.com/"><i class="fa-brands fa-twitter"></i></a>
+                      <a href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin-in"></i></a>
+                      <a href="https://github.com/"><i class="fa-brands fa-github"></i></a>
                   </div>
               </div>
 
