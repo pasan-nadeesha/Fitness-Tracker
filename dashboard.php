@@ -82,7 +82,6 @@ $pct_water = min(round(($water / 2.5) * 100), 100);
 $avg_ring_pct = round(($pct_move + $pct_exercise + $pct_water) / 3);
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,6 +101,14 @@ $avg_ring_pct = round(($pct_move + $pct_exercise + $pct_water) / 3);
             <img src="images/logo1.png" alt="AuraFit Logo" class="logo_img">
             <span class="logo_text">AURAFIT</span>
         </div>
+
+        <!-- Hamburger Icon for Mobile View -->
+        <div class="menu_toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
         <ul class="nav_links">
             <li><a href="index.php">Home</a></li>
             <li><a href="dashboard.php" class="active">Dashboard</a></li>
@@ -413,10 +420,10 @@ $avg_ring_pct = round(($pct_move + $pct_exercise + $pct_water) / 3);
                     course project. It showcases our learning, practical skills, and application of modern web design, frontend technologies, backend technologies, and web application development principles.
                 </p>
                 <div class="social_icons">
-                      <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f"></i></a>
-                      <a href="https://x.com/"><i class="fa-brands fa-twitter"></i></a>
-                      <a href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin-in"></i></a>
-                      <a href="https://github.com/"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://x.com/"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://github.com/"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
         </div>

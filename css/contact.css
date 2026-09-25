@@ -51,6 +51,7 @@ body {
     font-size: 0.95rem;
 }
 
+/* Hamburger button hidden on desktop */
 .menu_toggle {
     display: none;
     flex-direction: column;
@@ -143,7 +144,7 @@ body {
     font-family: 'Poppins', sans-serif;
     max-width: 800px;
     margin: 0px auto 100px auto;
-    opacity: 1 !important; /* Force visible */
+    opacity: 1 !important;
     transform: none !important;
 }
 
@@ -359,7 +360,7 @@ body {
     box-shadow: 0 12px 30px rgba(110, 110, 110, 0.6);
 }
 
-/* Responsive styles */
+/* Medium device responsiveness */
 @media screen and (max-width: 868px) {
     .vision_container, .mission_container {
         margin: 100px 5% 0px 5%;
@@ -383,33 +384,63 @@ body {
     }
 }
 
+/* Mobile responsive navigation and drawer */
 @media screen and (max-width: 768px) {
+    /* Show hamburger icon */
     .menu_toggle {
         display: flex;
+        position: fixed;
+        right: 25px;
+        top: 25px;
+        z-index: 1001;
     }
 
+    /* Slide drawer container */
     .nav_links {
-        position: absolute;
-        top: 70px;
+        position: fixed;
+        top: 0;
         right: -100%;
+        width: 260px;
+        height: 100vh;
+        background: #ffffff;
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+        display: flex;
         flex-direction: column;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        width: 100%;
-        text-align: center;
-        transition: 0.3s ease-in-out;
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-        padding: 20px 0;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 130px;
+        gap: 35px;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
     }
 
+    /* Slide open drawer */
     .nav_links.active {
         right: 0;
     }
 
     .nav_links li {
-        padding: 15px 0;
+        padding: 0;
+        width: 100%;
+        text-align: center;
     }
 
+    .nav_links a {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1e293b;
+        display: block;
+        padding: 8px 0;
+        letter-spacing: 0.5px;
+        transition: color 0.2s ease;
+    }
+
+    .nav_links a:hover {
+        color: #182fc3;
+    }
+
+    /* Transform hamburger into close (X) icon */
     .menu_toggle.is-active .bar:nth-child(2) {
         opacity: 0;
     }
